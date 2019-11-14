@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -14,9 +14,13 @@
 		86813FDD2374EAE600DA5F23 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86813FDC2374EAE600DA5F23 /* Assets.xcassets */; };
 		86813FE02374EAE600DA5F23 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86813FDE2374EAE600DA5F23 /* LaunchScreen.storyboard */; };
 		86813FEE2374FACE00DA5F23 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86813FED2374FACE00DA5F23 /* SettingsViewController.swift */; };
+		86BEBBF1237A79AE00F0AAB0 /* ModelTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BEBBF0237A79AE00F0AAB0 /* ModelTimer.swift */; };
+		86BEBBF3237AA88A00F0AAB0 /* RealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BEBBF2237AA88A00F0AAB0 /* RealmModel.swift */; };
+		9861D57DC2F19CD257E9DA5C /* Pods_Focus_Timer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18688B89D548CB8672DDB3A7 /* Pods_Focus_Timer.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		18688B89D548CB8672DDB3A7 /* Pods_Focus_Timer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Focus_Timer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		86813FD02374EAE300DA5F23 /* Focus Timer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Focus Timer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		86813FD32374EAE300DA5F23 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		86813FD52374EAE300DA5F23 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -26,6 +30,10 @@
 		86813FDF2374EAE600DA5F23 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		86813FE12374EAE600DA5F23 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		86813FED2374FACE00DA5F23 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		86BEBBF0237A79AE00F0AAB0 /* ModelTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelTimer.swift; sourceTree = "<group>"; };
+		86BEBBF2237AA88A00F0AAB0 /* RealmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmModel.swift; sourceTree = "<group>"; };
+		CDDC9E560FB4965617CC42E4 /* Pods-Focus Timer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Focus Timer.release.xcconfig"; path = "Target Support Files/Pods-Focus Timer/Pods-Focus Timer.release.xcconfig"; sourceTree = "<group>"; };
+		E9ED44CF9914AC45A0A10712 /* Pods-Focus Timer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Focus Timer.debug.xcconfig"; path = "Target Support Files/Pods-Focus Timer/Pods-Focus Timer.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +41,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9861D57DC2F19CD257E9DA5C /* Pods_Focus_Timer.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -44,6 +53,8 @@
 			children = (
 				86813FD22374EAE300DA5F23 /* Focus Timer */,
 				86813FD12374EAE300DA5F23 /* Products */,
+				A4063B611D94BFD3032E83F7 /* Pods */,
+				D09E167C005D9EF5E4AB52A9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -69,6 +80,8 @@
 		86813FE72374ECE500DA5F23 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				86BEBBF0237A79AE00F0AAB0 /* ModelTimer.swift */,
+				86BEBBF2237AA88A00F0AAB0 /* RealmModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -102,6 +115,23 @@
 			path = "Supporting files";
 			sourceTree = "<group>";
 		};
+		A4063B611D94BFD3032E83F7 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E9ED44CF9914AC45A0A10712 /* Pods-Focus Timer.debug.xcconfig */,
+				CDDC9E560FB4965617CC42E4 /* Pods-Focus Timer.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		D09E167C005D9EF5E4AB52A9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				18688B89D548CB8672DDB3A7 /* Pods_Focus_Timer.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -109,9 +139,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 86813FE42374EAE600DA5F23 /* Build configuration list for PBXNativeTarget "Focus Timer" */;
 			buildPhases = (
+				4E7D1AF782A872B9D1B1FBDA /* [CP] Check Pods Manifest.lock */,
 				86813FCC2374EAE300DA5F23 /* Sources */,
 				86813FCD2374EAE300DA5F23 /* Frameworks */,
 				86813FCE2374EAE300DA5F23 /* Resources */,
+				A6CB3E65278C2CC26B96EA75 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -167,15 +199,59 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		4E7D1AF782A872B9D1B1FBDA /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Focus Timer-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A6CB3E65278C2CC26B96EA75 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Focus Timer/Pods-Focus Timer-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Focus Timer/Pods-Focus Timer-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Focus Timer/Pods-Focus Timer-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		86813FCC2374EAE300DA5F23 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				86813FD82374EAE300DA5F23 /* ViewController.swift in Sources */,
+				86BEBBF3237AA88A00F0AAB0 /* RealmModel.swift in Sources */,
 				86813FD42374EAE300DA5F23 /* AppDelegate.swift in Sources */,
 				86813FD62374EAE300DA5F23 /* SceneDelegate.swift in Sources */,
 				86813FEE2374FACE00DA5F23 /* SettingsViewController.swift in Sources */,
+				86BEBBF1237A79AE00F0AAB0 /* ModelTimer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -317,6 +393,7 @@
 		};
 		86813FE52374EAE600DA5F23 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E9ED44CF9914AC45A0A10712 /* Pods-Focus Timer.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -334,6 +411,7 @@
 		};
 		86813FE62374EAE600DA5F23 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CDDC9E560FB4965617CC42E4 /* Pods-Focus Timer.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
