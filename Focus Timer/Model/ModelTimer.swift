@@ -5,18 +5,18 @@
 //  Created by Владислав on 12.11.2019.
 //
 
-import Foundation
 import RealmSwift
 
 class TimerFocus: Object {
     
  //   static var sh
     
-    @objc dynamic var timer = 299,
-                      rest = 70
+    @objc dynamic var timer = 1500.00,
+                      rest = 300.00
     
-//    init(timer: counter){
-  //      self.timer = timer
-  //  }
-    
+    convenience init(timer: TimeInterval, rest: TimeInterval){
+        self.init()
+        self.timer = timer
+        self.rest = rest
+    }
 }

@@ -16,4 +16,9 @@ try! realm.write {
     realm.add(timer)
 }
 }
+    
+//        static func writeObject (_ timer: TimerFocus){
+//    try! realm.write {
+//        timer.timer =
+//    }
 }
