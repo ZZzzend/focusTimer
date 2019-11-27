@@ -7,16 +7,16 @@
 
 import RealmSwift
 
-class TimerFocus: Object {
+class TimerFocus {
     
  //   static var sh
     
-    @objc dynamic var timer = 1500.00,
-                      rest = 300.00
+    var timer = 1500.00,
+        rest = 300.00
     
-    convenience init(timer: TimeInterval, rest: TimeInterval){
-        self.init()
-        self.timer = timer
-        self.rest = rest
-    }
+//    convenience init(timer: TimeInterval, rest: TimeInterval){
+//        self.init()
+//        self.timer = timer
+//        self.rest = rest
+//    }
 }
