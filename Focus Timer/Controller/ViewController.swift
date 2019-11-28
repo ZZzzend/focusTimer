@@ -12,19 +12,19 @@ import AudioToolbox
 class ViewController: UIViewController {
     
     
-    private var time = TimerFocus()
     private var myTimer: Timer?
     private var countTimers = 0
-    let userDefaults = UserDefaults.standard
+    private let userDefaults = UserDefaults.standard
+    var state = State.initial
     
-    var counter = 1500 //time.timer
-    var counterRest = 300 //time.rest
-    var pause = 0
-    var pauseBreak = 0
-    lazy var circleTimerWork = counter
-    lazy var circleTimerRest = counterRest
+    private var counter = 1500
+    private var counterRest = 300
+    private var pause = 0
+    private var pauseBreak = 0
+    private lazy var circleTimerWork = counter
+    private lazy var circleTimerRest = counterRest
 
-    var shapeLayer: CAShapeLayer! {
+    private var shapeLayer: CAShapeLayer! {
         didSet {
             shapeLayer.strokeColor = #colorLiteral(red: 0.8875589534, green: 0.8875589534, blue: 0.8875589534, alpha: 1).cgColor
             shapeLayer.lineWidth = 30.0
@@ -34,7 +34,7 @@ class ViewController: UIViewController {
         }
     }
     
-    var overShapeLayer: CAShapeLayer! {
+    private var overShapeLayer: CAShapeLayer! {
         didSet {
             overShapeLayer.strokeColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1).cgColor
             overShapeLayer.lineWidth = 30.0
@@ -157,7 +157,7 @@ class ViewController: UIViewController {
     func decrement (count: inout Int, circleTimer: inout Int){
         if count > 0 {
             count = circleTimer - -Int((self.myTimer?.userInfo as! Date).timeIntervalSinceNow)
-            overShapeLayer.strokeEnd += 1 / CGFloat(circleTimer)
+            overShapeLayer.strokeEnd = CGFloat(-(self.myTimer?.userInfo as! Date).timeIntervalSinceNow) / CGFloat(circleTimer)
          }
     }
     
@@ -190,7 +190,7 @@ class ViewController: UIViewController {
         
         
         if sender.titleLabel?.text == "Начать работу" {
-            myTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateCounter), userInfo: Date(), repeats: true)
+            myTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(updateCounter), userInfo: Date(), repeats: true)
            // counter -= 1
             
             sender.backgroundColor = #colorLiteral(red: 0.2392156863, green: 0.6745098039, blue: 0.968627451, alpha: 1)
@@ -264,5 +264,66 @@ class ViewController: UIViewController {
 //
 //        view.layer.addSublayer(shapeLayer)
 //    }
+    
+    enum State {
+        case initial
+        case workTimerIsActive
+        case breakTimerIsActive
+        case pauseTimer(secondsRemaind: TimeInterval)
+        
+        var pauseButtonTitle: String {
+            switch self {
+                 case .initial:
+                       return "Начать работу"
+            case .workTimerIsActive:
+                return "Пауза"
+            case .breakTimerIsActive:
+                return "Пауза"
+            case .pauseTimer( _):
+                 return "Возобновить"
+            }
+        }
+
+        var pauseButtonColor: UIColor {
+            switch self {
+                 case .initial:
+                       return #colorLiteral(red: 0.3579321173, green: 0.7841776604, blue: 0.3394897625, alpha: 1)
+            case .workTimerIsActive:
+                 return #colorLiteral(red: 0.2392156863, green: 0.6745098039, blue: 0.968627451, alpha: 1)
+            case .breakTimerIsActive:
+                 return #colorLiteral(red: 0.2392156863, green: 0.6745098039, blue: 0.968627451, alpha: 1)
+            case .pauseTimer( _):
+                 return #colorLiteral(red: 0.3579321173, green: 0.7841776604, blue: 0.3394897625, alpha: 1)
+            }
+        }
+        
+        var cancelButtonTitle: String {
+            switch self {
+                 case .initial:
+                       return "Перерыв"
+            case .workTimerIsActive:
+                return "Остановить"
+            case .breakTimerIsActive:
+                return "Остановить"
+            case .pauseTimer( _):
+                 return "Остановить"
+            }
+        }
+
+        var cancelButtonColor: UIColor {
+            switch self {
+                 case .initial:
+                       return #colorLiteral(red: 0.2392156863, green: 0.6745098039, blue: 0.968627451, alpha: 1)
+            case .workTimerIsActive:
+                 return #colorLiteral(red: 1, green: 0, blue: 0, alpha: 1)
+            case .breakTimerIsActive:
+                 return #colorLiteral(red: 1, green: 0, blue: 0, alpha: 1)
+            case .pauseTimer( _):
+                 return #colorLiteral(red: 1, green: 0, blue: 0, alpha: 1)
+            }
+        }
+        
+        
+    }
 }
 

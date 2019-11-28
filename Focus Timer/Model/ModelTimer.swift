@@ -5,18 +5,18 @@
 //  Created by Владислав on 12.11.2019.
 //
 
-import RealmSwift
+//import RealmSwift
 
-class TimerFocus {
+//class TimerFocus {
     
  //   static var sh
     
-    var timer = 1500.00,
-        rest = 300.00
+ //   var timer = 1500.00,
+ //       rest = 300.00
     
 //    convenience init(timer: TimeInterval, rest: TimeInterval){
 //        self.init()
 //        self.timer = timer
 //        self.rest = rest
 //    }
-}
+//}
