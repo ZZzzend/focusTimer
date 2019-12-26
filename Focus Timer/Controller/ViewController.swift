@@ -12,17 +12,25 @@ import AudioToolbox
 class ViewController: UIViewController {
     
     
-    private var myTimer: Timer?
-    private var countTimers = 0
+    private var timer: Timer?
     private let userDefaults = UserDefaults.standard
-    var state = State.initial
     
-    private var counter = 1500
-    private var counterRest = 300
-    private var pause = 0
-    private var pauseBreak = 0
-    private lazy var circleTimerWork = counter
-    private lazy var circleTimerRest = counterRest
+    var state = State.initial {
+        didSet {
+            guard isViewLoaded else { return }
+            reloadInterface()
+        }
+    }
+    
+//    private var workCounter = 1500.00
+//    private var breakCounter = 300.00
+//    private var workPause = 0.00
+//    private var breakPause = 0.00
+//    private var countTimers = 0
+    private var (workCounter, breakCounter, workPause, breakPause, countTimers) = (1500.00, 300.00, 0.00, 0.00, 0)
+    
+    private lazy var workCircleTimer = workCounter
+    private lazy var breakCircleTimer = breakCounter
 
     private var shapeLayer: CAShapeLayer! {
         didSet {
@@ -44,11 +52,13 @@ class ViewController: UIViewController {
         }
     }
 
-    @IBOutlet weak var CountTimersLabel: UILabel!
+   // @IBOutlet weak var viewForAnimation: UIView!
+    @IBOutlet weak var countTimersLabel: UILabel!
     @IBOutlet weak var labelTimer: UILabel!
     @IBOutlet weak var buttonSettings: UIButton!
     @IBOutlet weak var buttonPause: UIButton!
     @IBOutlet weak var buttonStop: UIButton!
+    @IBOutlet weak var settingsButton: UIButton!
     
     override func viewDidLoad() {
         
@@ -56,7 +66,7 @@ class ViewController: UIViewController {
         
         userDefaultsWork()
         
-        buttonSettings.setImage(UIImage(named: "play.png"), for: .normal)
+        settingsButton.setImage(UIImage(named: "play.png"), for: .normal)
         
         shapeLayer = CAShapeLayer()
         view.layer.addSublayer(shapeLayer)
@@ -64,180 +74,196 @@ class ViewController: UIViewController {
         overShapeLayer = CAShapeLayer()
         view.layer.addSublayer(overShapeLayer)
         
-     //   labelTimer.text = "\(counter - ((counter/60)*60))"
+        reloadInterface()
+        
+    }
+    
+    
+    func reloadInterface() {
+        buttonPause.setTitle(state.workAndPauseButtonTitle, for: .normal)
+        buttonPause.backgroundColor = state.workAndPauseButtonColor
+        
+        buttonStop.setTitle(state.breakAndStopButtonTitle, for: .normal)
+        buttonStop.backgroundColor = state.breakAndStopButtonColor
+        
     }
     
     override func viewDidLayoutSubviews() {
-        
         configShapeLayer(shapeLayer)
         configShapeLayer(overShapeLayer)
     }
     
     func configShapeLayer(_ shapeLayer: CAShapeLayer) {
-        let path = UIBezierPath(arcCenter: CGPoint(x: self.view.bounds.size.width / 2, y: 350), radius: CGFloat(150),
+        
+        var radius = labelTimer.bounds.size.width / 1.5
+        
+        if labelTimer.bounds.size.width / 1.5 > self.view.bounds.size.width / 2 - 30 {
+            radius = self.view.bounds.size.width / 2 - 30
+        }
+        
+        let path = UIBezierPath(arcCenter: labelTimer.center, radius: CGFloat(radius),
         startAngle: CGFloat(3 * Double.pi / 2), endAngle: CGFloat(7 * Double.pi / 2), clockwise: true)
         shapeLayer.frame = view.bounds
         shapeLayer.path = path.cgPath
     }
-
-    @IBAction func pressedSettings(_ sender: UIButton) {
-        
-    }
     
     func userDefaultsWork() {
         if  let timer = userDefaults.object(forKey: "timer") {
-            counter = (timer as? Int)!
+            workCounter = (timer as? Double)!
         } else {
-            counter = 1500
+            workCounter = 1500.00
         }
-        circleTimerWork = counter
+        workCircleTimer = workCounter
         
  //       counter = UserDefaults.standard.integer(forKey: "timer") ?? 1500
  //       counterRest = UserDefaults.standard.integer(forKey: "rest") ?? 300
 
         if  let rest = userDefaults.object(forKey: "rest") {
 
-            counterRest = (rest as? Int)!
+            breakCounter = (rest as? Double)!
         } else {
-            counterRest = 300
+            breakCounter = 300.00
         }
         
-        circleTimerWork = counter
-        circleTimerRest = counterRest
+        workCircleTimer = workCounter
+        breakCircleTimer = breakCounter
 
-        labelTimer.text = String(format: "%02d:%02d", counter / 60, counter % 60)
+        labelTimer.text = String(format: "%02d:%02d", Int(workCounter) / 60, Int(workCounter) % 60)
     }
     
     
     
     @objc func updateCounter() {
-        decrement(count: &counter, circleTimer: &circleTimerWork)
-        if counter == 0 {
+        decrement(count: &workCounter, circleTimer: &workCircleTimer)
+        if workCounter < 1 {
             countTimers += 1
-            CountTimersLabel.text = "Завершенные таймеры: \(countTimers)"
+            countTimersLabel.text = "Завершенные таймеры: \(countTimers)"
         }
-        exampleTime(count: counter)
+        exampleTime(count: workCounter)
         
     }
     
     @objc func restCounter() {
-        decrement(count: &counterRest, circleTimer: &circleTimerRest)
-        exampleTime(count: counterRest)
+        decrement(count: &breakCounter, circleTimer: &breakCircleTimer)
+        exampleTime(count: breakCounter)
         
     }
     
     @objc func unpauseCounter() {
-        decrementPause(count: &counter, circleTimer: &circleTimerWork, pause: &pause)
-        exampleTime(count: counter)
+        decrementPause(count: &workCounter, circleTimer: &workCircleTimer, pause: &workPause)
+        exampleTime(count: workCounter)
         
     }
     
     @objc func breakUnpauseCounter() {
-        decrementPause(count: &counter, circleTimer: &circleTimerWork, pause: &pauseBreak)
-        exampleTime(count: counter)
+        decrementPause(count: &workCounter, circleTimer: &breakCircleTimer, pause: &breakPause)
+        exampleTime(count: workCounter)
         
     }
     
-    func exampleTime(count: Int) {
+    func exampleTime(count: Double) {
             if count > 0 {
            // print("\(count) seconds to the end of the world")
-                if count > 59 {
-                    labelTimer.text = String(format: "%02d:%02d", count / 60, count % 60)
+                if count >= 60 {
+                    labelTimer.text = String(format: "%02d:%02d", Int(count) / 60, Int(count) % 60)
                 } else {
-                    labelTimer.text = String(format: "%02d", count)
+                    labelTimer.text = String(format: "%02d", Int(count))
                 }
-        }
+            }
             
-            if count == 0 {
+            if count < 1 {
                AudioServicesPlaySystemSound(SystemSoundID(1022))
                dischargeTimer()
             }
     }
     
-    func decrement (count: inout Int, circleTimer: inout Int){
+    func decrement (count: inout Double, circleTimer: inout Double){
         if count > 0 {
-            count = circleTimer - -Int((self.myTimer?.userInfo as! Date).timeIntervalSinceNow)
-            overShapeLayer.strokeEnd = CGFloat(-(self.myTimer?.userInfo as! Date).timeIntervalSinceNow) / CGFloat(circleTimer)
+            count = circleTimer - -(self.timer?.userInfo as! Date).timeIntervalSinceNow
+            overShapeLayer.strokeEnd = CGFloat(-(self.timer?.userInfo as! Date).timeIntervalSinceNow) / CGFloat(circleTimer)
          }
     }
     
-    func decrementPause (count: inout Int, circleTimer: inout Int, pause: inout Int){
+    func decrementPause (count: inout Double, circleTimer: inout Double, pause: inout Double){
         if count > 0 {
-            count = circleTimer - pause - -Int((self.myTimer?.userInfo as! Date).timeIntervalSinceNow)
-            overShapeLayer.strokeEnd += 1 / CGFloat(circleTimer)
+            count = circleTimer - pause - -(self.timer?.userInfo as! Date).timeIntervalSinceNow
+            overShapeLayer.strokeEnd = CGFloat(-(self.timer?.userInfo as! Date).timeIntervalSinceNow + pause) / CGFloat(circleTimer)
          }
     }
     
     func dischargeTimer() {
-        myTimer?.invalidate()
+        state = .initial
+        timer?.invalidate()
    //     counter = 300 //time.timer
    //     counterRest = 80 //time.rest
         userDefaultsWork()
     //    labelTimer.text = String(format: "%02d:%02d", counter / 60, counter % 60)
         overShapeLayer.strokeEnd = 0
             
-        buttonPause.setTitle("Начать работу", for: .normal)
         overShapeLayer.strokeColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1).cgColor
-        if buttonStop.backgroundColor == #colorLiteral(red: 1, green: 0, blue: 0, alpha: 1) {
-            labelTimer.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-        }
-        buttonPause.backgroundColor = #colorLiteral(red: 0.3579321173, green: 0.7841776604, blue: 0.3394897625, alpha: 1)
-        buttonStop.setTitle("Перерыв", for: .normal)
-        buttonStop.backgroundColor = #colorLiteral(red: 0.2392156863, green: 0.6745098039, blue: 0.968627451, alpha: 1)
+        labelTimer.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
     }
         
-    @IBAction func pressedButtonPause(_ sender: UIButton) {
+    @IBAction func workAndPause(_ sender: UIButton) {
         
-        
-        if sender.titleLabel?.text == "Начать работу" {
-            myTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(updateCounter), userInfo: Date(), repeats: true)
-           // counter -= 1
+        switch state {
+        case .initial:
+            state = .workTimerIsActive
+            timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(updateCounter), userInfo: Date(), repeats: true)
             
-            sender.backgroundColor = #colorLiteral(red: 0.2392156863, green: 0.6745098039, blue: 0.968627451, alpha: 1)
-            sender.setTitle("Пауза", for: .normal)
+        case .workTimerIsActive:
+            state = .pauseTimer(secondsRemaind: (self.timer?.userInfo as! Date).timeIntervalSinceNow, previousState: .workTimerIsActive)
+            timer?.invalidate()
+            workPause = workCircleTimer - workCounter
+            breakPause = workCircleTimer - breakCounter
             
-            buttonStop.backgroundColor = #colorLiteral(red: 0.8166441942, green: 0.1899396583, blue: 0.1593456727, alpha: 1)
-            buttonStop.setTitle("Остановить", for: .normal)
-        }
-        
-        if sender.titleLabel?.text == "Пауза" {
-            myTimer?.invalidate()
-            sender.backgroundColor = #colorLiteral(red: 0.3579321173, green: 0.7841776604, blue: 0.3394897625, alpha: 1)
-            sender.setTitle("Возобновить", for: .normal)
-            pause = circleTimerWork - counter
-            pauseBreak = circleTimerWork - counterRest
-        }
-        
-        if sender.titleLabel?.text == "Возобновить" {
-            sender.backgroundColor = #colorLiteral(red: 0.2392156863, green: 0.6745098039, blue: 0.968627451, alpha: 1)
-            sender.setTitle("Пауза", for: .normal)
+        case .breakTimerIsActive:
+            state = .pauseTimer(secondsRemaind: (self.timer?.userInfo as! Date).timeIntervalSinceNow, previousState: .breakTimerIsActive)
+            timer?.invalidate()
+            workPause = workCircleTimer - workCounter
+            breakPause = workCircleTimer - breakCounter
             
-        if buttonStop.backgroundColor == #colorLiteral(red: 0.8166441942, green: 0.1899396583, blue: 0.1593456727, alpha: 1) {
-            myTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(unpauseCounter), userInfo: Date(), repeats: true)
+        case .pauseTimer(let secondsRemaind, let previousState):
+            state = previousState
+            
+            switch previousState {
+            case .workTimerIsActive:
+                timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(unpauseCounter), userInfo: Date(), repeats: true)
                 
-            } else {
-                myTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(breakUnpauseCounter), userInfo: Date(), repeats: true)
+            case .breakTimerIsActive:
+                timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(breakUnpauseCounter), userInfo: Date(), repeats: true)
+                
+            case .initial:
+                break
+                
+            case .pauseTimer(let secondsRemaind, let previousState):
+                break
+                
             }
         }
     }
     
-    @IBAction func pressedButtonCancel(_ sender: UIButton) {
+    @IBAction func breakAndStop(_ sender: UIButton) {
         
-        if sender.titleLabel?.text == "Перерыв" {
-            sender.setTitle("Остановить", for: .normal)
-            sender.backgroundColor = #colorLiteral(red: 1, green: 0, blue: 0, alpha: 1)
+        switch state {
+            
+        case .initial:
+            state = .breakTimerIsActive
             labelTimer.textColor = #colorLiteral(red: 0.2965636993, green: 0.6915442732, blue: 0.3586270114, alpha: 1)
             overShapeLayer.strokeColor = #colorLiteral(red: 0.368627451, green: 0.862745098, blue: 0.4392156863, alpha: 1).cgColor
+            labelTimer.text = String(format: "%02d:%02d", Int(breakCounter) / 60, Int(breakCounter) % 60)
+            timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(restCounter), userInfo: Date(), repeats: true)
             
-            buttonPause.backgroundColor = #colorLiteral(red: 0.2392156863, green: 0.6745098039, blue: 0.968627451, alpha: 1)
-            buttonPause.setTitle("Пауза", for: .normal)
+        case .workTimerIsActive:
+          //  state = .initial
+            dischargeTimer()
             
-            labelTimer.text = String(format: "%02d:%02d", counterRest / 60, counterRest % 60)
-            myTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(restCounter), userInfo: Date(), repeats: true)
-         //   counterRest -= 1
-        }
-        
-        if sender.titleLabel?.text == "Остановить" {
+        case .breakTimerIsActive:
+          //  state = .initial
+            dischargeTimer()
+            
+        case .pauseTimer(let secondsRemaind, let previousState):
+        //    state = .initial
             dischargeTimer()
         }
         
@@ -249,32 +275,16 @@ class ViewController: UIViewController {
             userDefaultsWork()
     }
     
-//    func shapeFLayer() {
-//        let circlePath = UIBezierPath(arcCenter: CGPoint(x: self.view.bounds.size.width / 2, y: 350), radius: CGFloat(150), startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true)
-//
-//        let shapeLayer = CAShapeLayer()
-//        shapeLayer.path = circlePath.cgPath
-//
-//        //change the fill color
-//        shapeLayer.fillColor = UIColor.clear.cgColor
-//        //you can change the stroke color
-//        shapeLayer.strokeColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1).cgColor
-//        //you can change the line width
-//        shapeLayer.lineWidth = 20.0
-//
-//        view.layer.addSublayer(shapeLayer)
-//    }
-    
-    enum State {
-        case initial
-        case workTimerIsActive
-        case breakTimerIsActive
-        case pauseTimer(secondsRemaind: TimeInterval)
+    indirect enum State {
+        case initial,
+             workTimerIsActive,
+             breakTimerIsActive,
+             pauseTimer(secondsRemaind: TimeInterval, previousState: State)
         
-        var pauseButtonTitle: String {
+        var workAndPauseButtonTitle: String {
             switch self {
-                 case .initial:
-                       return "Начать работу"
+            case .initial:
+                return "Начать работу"
             case .workTimerIsActive:
                 return "Пауза"
             case .breakTimerIsActive:
@@ -284,7 +294,7 @@ class ViewController: UIViewController {
             }
         }
 
-        var pauseButtonColor: UIColor {
+        var workAndPauseButtonColor: UIColor {
             switch self {
                  case .initial:
                        return #colorLiteral(red: 0.3579321173, green: 0.7841776604, blue: 0.3394897625, alpha: 1)
@@ -297,7 +307,7 @@ class ViewController: UIViewController {
             }
         }
         
-        var cancelButtonTitle: String {
+        var breakAndStopButtonTitle: String {
             switch self {
                  case .initial:
                        return "Перерыв"
@@ -310,7 +320,7 @@ class ViewController: UIViewController {
             }
         }
 
-        var cancelButtonColor: UIColor {
+        var breakAndStopButtonColor: UIColor {
             switch self {
                  case .initial:
                        return #colorLiteral(red: 0.2392156863, green: 0.6745098039, blue: 0.968627451, alpha: 1)
@@ -326,4 +336,3 @@ class ViewController: UIViewController {
         
     }
 }
-
