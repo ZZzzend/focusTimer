@@ -35,7 +35,7 @@ class ViewController: UIViewController {
     private var shapeLayer: CAShapeLayer! {
         didSet {
             shapeLayer.strokeColor = #colorLiteral(red: 0.8875589534, green: 0.8875589534, blue: 0.8875589534, alpha: 1).cgColor
-            shapeLayer.lineWidth = 30.0
+            shapeLayer.lineWidth = 26.0
             shapeLayer.lineCap = .round
             shapeLayer.fillColor = nil
             shapeLayer.strokeEnd = 1
@@ -45,7 +45,7 @@ class ViewController: UIViewController {
     private var overShapeLayer: CAShapeLayer! {
         didSet {
             overShapeLayer.strokeColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1).cgColor
-            overShapeLayer.lineWidth = 30.0
+            overShapeLayer.lineWidth = 26.0
             overShapeLayer.lineCap = .round
             overShapeLayer.fillColor = nil
             overShapeLayer.strokeEnd = 0
@@ -95,10 +95,10 @@ class ViewController: UIViewController {
     
     func configShapeLayer(_ shapeLayer: CAShapeLayer) {
         
-        var radius = labelTimer.bounds.size.width / 1.5
+        var radius = labelTimer.bounds.size.width / 1.15
         
-        if labelTimer.bounds.size.width / 1.5 > self.view.bounds.size.width / 2 - 30 {
-            radius = self.view.bounds.size.width / 2 - 30
+        if labelTimer.bounds.size.width / 1.15 > self.view.bounds.size.width / 2 - 40 {
+            radius = self.view.bounds.size.width / 2 - 40
         }
         
         let path = UIBezierPath(arcCenter: labelTimer.center, radius: CGFloat(radius),
@@ -156,8 +156,8 @@ class ViewController: UIViewController {
     }
     
     @objc func breakUnpauseCounter() {
-        decrementPause(count: &workCounter, circleTimer: &breakCircleTimer, pause: &breakPause)
-        exampleTime(count: workCounter)
+        decrementPause(count: &breakCounter, circleTimer: &breakCircleTimer, pause: &breakPause)
+        exampleTime(count: breakCounter)
         
     }
     
@@ -179,14 +179,14 @@ class ViewController: UIViewController {
     
     func decrement (count: inout Double, circleTimer: inout Double){
         if count > 0 {
-            count = circleTimer - -(self.timer?.userInfo as! Date).timeIntervalSinceNow
+            count = circleTimer + (self.timer?.userInfo as! Date).timeIntervalSinceNow
             overShapeLayer.strokeEnd = CGFloat(-(self.timer?.userInfo as! Date).timeIntervalSinceNow) / CGFloat(circleTimer)
          }
     }
     
     func decrementPause (count: inout Double, circleTimer: inout Double, pause: inout Double){
         if count > 0 {
-            count = circleTimer - pause - -(self.timer?.userInfo as! Date).timeIntervalSinceNow
+            count = circleTimer - pause + (self.timer?.userInfo as! Date).timeIntervalSinceNow
             overShapeLayer.strokeEnd = CGFloat(-(self.timer?.userInfo as! Date).timeIntervalSinceNow + pause) / CGFloat(circleTimer)
          }
     }
@@ -215,13 +215,13 @@ class ViewController: UIViewController {
             state = .pauseTimer(secondsRemaind: (self.timer?.userInfo as! Date).timeIntervalSinceNow, previousState: .workTimerIsActive)
             timer?.invalidate()
             workPause = workCircleTimer - workCounter
-            breakPause = workCircleTimer - breakCounter
+         //   breakPause = workCircleTimer - breakCounter
             
         case .breakTimerIsActive:
             state = .pauseTimer(secondsRemaind: (self.timer?.userInfo as! Date).timeIntervalSinceNow, previousState: .breakTimerIsActive)
             timer?.invalidate()
-            workPause = workCircleTimer - workCounter
-            breakPause = workCircleTimer - breakCounter
+          //  workPause = workCircleTimer - workCounter
+            breakPause = breakCircleTimer - breakCounter
             
         case .pauseTimer(let secondsRemaind, let previousState):
             state = previousState

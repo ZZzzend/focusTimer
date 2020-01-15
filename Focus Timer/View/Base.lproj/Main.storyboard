@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="l5Z-b5-JCa">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -25,8 +25,8 @@
                                     <segue destination="O3e-zS-I1s" kind="presentation" id="S8i-gc-iTb"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Завершенные таймеры: 0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IOj-LR-OYm">
-                                <rect key="frame" x="109.5" y="118" width="195.5" height="20"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Завершенные таймеры: 0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IOj-LR-OYm">
+                                <rect key="frame" x="109.33333333333333" y="118" width="195.33333333333337" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="4c2-S3-ldD"/>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="57" id="Iz8-wA-blf"/>
@@ -35,15 +35,15 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="nPV-kH-jKr">
-                                <rect key="frame" x="116.5" y="620" width="181" height="138"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="nPV-kH-jKr">
+                                <rect key="frame" x="72" y="698" width="270" height="60"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TIz-nG-gqZ">
-                                        <rect key="frame" x="0.0" y="0.0" width="181" height="60"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="126" height="60"/>
                                         <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="p8R-X0-1Tk"/>
-                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="140" id="ub0-Dh-Yh2"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="126" id="ub0-Dh-Yh2"/>
                                         </constraints>
                                         <state key="normal" title="Начать работу">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -53,11 +53,11 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dQj-hf-7xs">
-                                        <rect key="frame" x="0.0" y="78" width="181" height="60"/>
+                                        <rect key="frame" x="144" y="0.0" width="126" height="60"/>
                                         <color key="backgroundColor" red="0.23921568627450979" green="0.67450980392156867" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="181" id="CAp-63-zzG"/>
-                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="G4o-ud-6L4"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="126" id="CAp-63-zzG"/>
+                                            <constraint firstAttribute="height" constant="60" id="G4o-ud-6L4"/>
                                         </constraints>
                                         <state key="normal" title="Перерыв">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -69,37 +69,28 @@
                                 </subviews>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="25:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LEJ-7C-MJs">
-                                <rect key="frame" x="99.5" y="288" width="215.5" height="81.5"/>
+                                <rect key="frame" x="126.33333333333333" y="258" width="161.66666666666669" height="320"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="215.5" id="h2c-dN-b76"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="161.66666666666669" id="2yb-g2-dsk"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="70"/>
+                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="60"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="LEJ-7C-MJs" firstAttribute="top" secondItem="IOj-LR-OYm" secondAttribute="bottom" priority="999" constant="120" id="0he-Pn-Q7N"/>
+                            <constraint firstItem="nPV-kH-jKr" firstAttribute="top" secondItem="LEJ-7C-MJs" secondAttribute="bottom" priority="999" constant="120" id="3V6-B2-4DX"/>
                             <constraint firstItem="nPV-kH-jKr" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="5rh-7n-JYh"/>
                             <constraint firstItem="Xy6-MQ-a3t" firstAttribute="top" secondItem="nPV-kH-jKr" secondAttribute="bottom" constant="24" id="8Vv-ot-spy"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Xy6-MQ-a3t" secondAttribute="bottom" constant="30" id="Otg-Ka-ADA"/>
                             <constraint firstItem="LEJ-7C-MJs" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="SaK-TQ-tpT"/>
                             <constraint firstItem="Xy6-MQ-a3t" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="duV-B5-zFZ"/>
                             <constraint firstItem="IOj-LR-OYm" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="kjj-hp-OGe"/>
-                            <constraint firstItem="LEJ-7C-MJs" firstAttribute="top" secondItem="IOj-LR-OYm" secondAttribute="bottom" constant="150" id="o70-CE-dG8"/>
                             <constraint firstItem="IOj-LR-OYm" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="30" id="zfB-i5-207"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="o70-CE-dG8"/>
-                            </mask>
-                        </variation>
-                        <variation key="heightClass=regular-widthClass=compact">
-                            <mask key="constraints">
-                                <include reference="o70-CE-dG8"/>
-                            </mask>
-                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="Aa6-2d-Iad"/>
                     <connections>
@@ -136,7 +127,7 @@
                                                 </constraints>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Время работы" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rZ3-es-aR6">
-                                                <rect key="frame" x="150" y="10.5" width="114.5" height="19.5"/>
+                                                <rect key="frame" x="149.66666666666666" y="10.333333333333327" width="114.66666666666666" height="19.333333333333329"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="114.5" id="Dqx-Qs-A3H"/>
                                                 </constraints>
@@ -182,7 +173,7 @@
                                                 </constraints>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Время отдыха" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aQP-ge-TN6">
-                                                <rect key="frame" x="150.5" y="10.5" width="113" height="19.5"/>
+                                                <rect key="frame" x="150.66666666666666" y="10.333333333333313" width="112.99999999999997" height="19.333333333333329"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="113" id="L6P-mi-lgH"/>
                                                 </constraints>
