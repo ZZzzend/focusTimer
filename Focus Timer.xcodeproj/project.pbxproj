@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -14,8 +14,10 @@
 		86813FDD2374EAE600DA5F23 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86813FDC2374EAE600DA5F23 /* Assets.xcassets */; };
 		86813FE02374EAE600DA5F23 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86813FDE2374EAE600DA5F23 /* LaunchScreen.storyboard */; };
 		86813FEE2374FACE00DA5F23 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86813FED2374FACE00DA5F23 /* SettingsViewController.swift */; };
-		86BEBBF1237A79AE00F0AAB0 /* ModelTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BEBBF0237A79AE00F0AAB0 /* ModelTimer.swift */; };
-		86BEBBF3237AA88A00F0AAB0 /* RealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BEBBF2237AA88A00F0AAB0 /* RealmModel.swift */; };
+		86CC1B7923CF04AD00CAFA47 /* WorkStatesPressButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CC1B7823CF04AD00CAFA47 /* WorkStatesPressButtons.swift */; };
+		86CC1B7F23CF09BE00CAFA47 /* States.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CC1B7E23CF09BE00CAFA47 /* States.swift */; };
+		86CC1B8123CF14D800CAFA47 /* WorkTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CC1B8023CF14D800CAFA47 /* WorkTimer.swift */; };
+		86CC1B8323CF162300CAFA47 /* ConfigShapeLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CC1B8223CF162300CAFA47 /* ConfigShapeLayer.swift */; };
 		9861D57DC2F19CD257E9DA5C /* Pods_Focus_Timer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18688B89D548CB8672DDB3A7 /* Pods_Focus_Timer.framework */; };
 /* End PBXBuildFile section */
 
@@ -30,8 +32,10 @@
 		86813FDF2374EAE600DA5F23 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		86813FE12374EAE600DA5F23 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		86813FED2374FACE00DA5F23 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
-		86BEBBF0237A79AE00F0AAB0 /* ModelTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelTimer.swift; sourceTree = "<group>"; };
-		86BEBBF2237AA88A00F0AAB0 /* RealmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmModel.swift; sourceTree = "<group>"; };
+		86CC1B7823CF04AD00CAFA47 /* WorkStatesPressButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkStatesPressButtons.swift; sourceTree = "<group>"; };
+		86CC1B7E23CF09BE00CAFA47 /* States.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = States.swift; sourceTree = "<group>"; };
+		86CC1B8023CF14D800CAFA47 /* WorkTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkTimer.swift; sourceTree = "<group>"; };
+		86CC1B8223CF162300CAFA47 /* ConfigShapeLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigShapeLayer.swift; sourceTree = "<group>"; };
 		CDDC9E560FB4965617CC42E4 /* Pods-Focus Timer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Focus Timer.release.xcconfig"; path = "Target Support Files/Pods-Focus Timer/Pods-Focus Timer.release.xcconfig"; sourceTree = "<group>"; };
 		E9ED44CF9914AC45A0A10712 /* Pods-Focus Timer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Focus Timer.debug.xcconfig"; path = "Target Support Files/Pods-Focus Timer/Pods-Focus Timer.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -80,8 +84,6 @@
 		86813FE72374ECE500DA5F23 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				86BEBBF0237A79AE00F0AAB0 /* ModelTimer.swift */,
-				86BEBBF2237AA88A00F0AAB0 /* RealmModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -100,6 +102,10 @@
 				86813FD32374EAE300DA5F23 /* AppDelegate.swift */,
 				86813FD72374EAE300DA5F23 /* ViewController.swift */,
 				86813FED2374FACE00DA5F23 /* SettingsViewController.swift */,
+				86CC1B7823CF04AD00CAFA47 /* WorkStatesPressButtons.swift */,
+				86CC1B7E23CF09BE00CAFA47 /* States.swift */,
+				86CC1B8023CF14D800CAFA47 /* WorkTimer.swift */,
+				86CC1B8223CF162300CAFA47 /* ConfigShapeLayer.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -228,12 +234,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				86CC1B7F23CF09BE00CAFA47 /* States.swift in Sources */,
+				86CC1B7923CF04AD00CAFA47 /* WorkStatesPressButtons.swift in Sources */,
 				86813FD82374EAE300DA5F23 /* ViewController.swift in Sources */,
-				86BEBBF3237AA88A00F0AAB0 /* RealmModel.swift in Sources */,
 				86813FD42374EAE300DA5F23 /* AppDelegate.swift in Sources */,
 				86813FD62374EAE300DA5F23 /* SceneDelegate.swift in Sources */,
+				86CC1B8323CF162300CAFA47 /* ConfigShapeLayer.swift in Sources */,
+				86CC1B8123CF14D800CAFA47 /* WorkTimer.swift in Sources */,
 				86813FEE2374FACE00DA5F23 /* SettingsViewController.swift in Sources */,
-				86BEBBF1237A79AE00F0AAB0 /* ModelTimer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -20,34 +20,22 @@ class SettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-//        workButton.layer.borderWidth = 0.5
-//        workButton.layer.borderColor = #colorLiteral(red: 0.768627451, green: 0.768627451, blue: 0.768627451, alpha: 1)
-//        restButton.layer.borderWidth = 0.5
-//       restButton.layer.borderColor = #colorLiteral(red: 0.768627451, green: 0.768627451, blue: 0.768627451, alpha: 1)
-        
-      //  borderWidthAndColor(buttonWidth: 0.5, buttonColor: #colorLiteral(red: 0.768627451, green: 0.768627451, blue: 0.768627451, alpha: 1))
-     //   borderWidthAndColor(button: workButton)
-     //   borderWidthAndColor(button: restButton)
         setCountDownDuration()
     }
     
-//    func borderWidthAndColor(button: UIButton) {
-//
-//        button.layer.borderWidth = 0.5
-//        button.layer.borderColor = #colorLiteral(red: 0.768627451, green: 0.768627451, blue: 0.768627451, alpha: 1)
-//    }
+    //MARK: Данные для таймера в UserDefaults
     
     func setCountDownDuration() {
         
         if  let timer = userDefaults.object(forKey: "timer") {
             timeWorkDatePicker.countDownDuration = (timer as? Double)!
-        } else {
-            timeWorkDatePicker.countDownDuration = 1500.00
+      //  } else {
+      //      timeWorkDatePicker.countDownDuration = 1500.00
         }
         if  let rest = userDefaults.object(forKey: "rest") {
             timeRestDatePicker.countDownDuration = (rest as? Double)!
-        } else {
-            timeRestDatePicker.countDownDuration = 300.00
+      //  } else {
+      //      timeRestDatePicker.countDownDuration = 300.00
         }
         
     }
