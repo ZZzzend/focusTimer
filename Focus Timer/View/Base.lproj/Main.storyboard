@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="l5Z-b5-JCa">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="l5Z-b5-JCa">
     <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Main View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Focus_Timer" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="MainViewController" customModule="Focus_Timer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -68,7 +68,7 @@
                                     </button>
                                 </subviews>
                             </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="25:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LEJ-7C-MJs">
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="25:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LEJ-7C-MJs">
                                 <rect key="frame" x="126.33333333333333" y="258" width="161.66666666666669" height="320"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="161.66666666666669" id="2yb-g2-dsk"/>
@@ -77,14 +77,23 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qUU-QS-Ij1" customClass="LabelWithShapesView" customModule="Focus_Timer" customModuleProvider="target">
+                                <rect key="frame" x="40" y="258" width="334" height="320"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="LEJ-7C-MJs" firstAttribute="top" secondItem="IOj-LR-OYm" secondAttribute="bottom" priority="999" constant="120" id="0he-Pn-Q7N"/>
+                            <constraint firstItem="qUU-QS-Ij1" firstAttribute="top" secondItem="IOj-LR-OYm" secondAttribute="bottom" priority="999" constant="120" id="3TN-aO-mDV"/>
                             <constraint firstItem="nPV-kH-jKr" firstAttribute="top" secondItem="LEJ-7C-MJs" secondAttribute="bottom" priority="999" constant="120" id="3V6-B2-4DX"/>
                             <constraint firstItem="nPV-kH-jKr" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="5rh-7n-JYh"/>
+                            <constraint firstItem="dQj-hf-7xs" firstAttribute="top" secondItem="qUU-QS-Ij1" secondAttribute="bottom" priority="999" constant="120" id="8On-mL-GO9"/>
                             <constraint firstItem="Xy6-MQ-a3t" firstAttribute="top" secondItem="nPV-kH-jKr" secondAttribute="bottom" constant="24" id="8Vv-ot-spy"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="qUU-QS-Ij1" secondAttribute="trailing" constant="40" id="9hZ-oi-dYj"/>
+                            <constraint firstItem="qUU-QS-Ij1" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="Odn-WL-waw"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Xy6-MQ-a3t" secondAttribute="bottom" constant="30" id="Otg-Ka-ADA"/>
+                            <constraint firstItem="qUU-QS-Ij1" firstAttribute="centerY" secondItem="LEJ-7C-MJs" secondAttribute="centerY" priority="999" id="REy-FS-k83"/>
                             <constraint firstItem="LEJ-7C-MJs" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="SaK-TQ-tpT"/>
                             <constraint firstItem="Xy6-MQ-a3t" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="duV-B5-zFZ"/>
                             <constraint firstItem="IOj-LR-OYm" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="kjj-hp-OGe"/>

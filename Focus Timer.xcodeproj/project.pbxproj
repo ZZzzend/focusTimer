@@ -7,35 +7,37 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		86323D272426265E004D367C /* TimerAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86323D262426265E004D367C /* TimerAction.swift */; };
+		867904402429D17000EF9128 /* test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8679043F2429D17000EF9128 /* test.swift */; };
 		86813FD42374EAE300DA5F23 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86813FD32374EAE300DA5F23 /* AppDelegate.swift */; };
 		86813FD62374EAE300DA5F23 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86813FD52374EAE300DA5F23 /* SceneDelegate.swift */; };
-		86813FD82374EAE300DA5F23 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86813FD72374EAE300DA5F23 /* ViewController.swift */; };
+		86813FD82374EAE300DA5F23 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86813FD72374EAE300DA5F23 /* MainViewController.swift */; };
 		86813FDB2374EAE300DA5F23 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86813FD92374EAE300DA5F23 /* Main.storyboard */; };
 		86813FDD2374EAE600DA5F23 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86813FDC2374EAE600DA5F23 /* Assets.xcassets */; };
 		86813FE02374EAE600DA5F23 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86813FDE2374EAE600DA5F23 /* LaunchScreen.storyboard */; };
 		86813FEE2374FACE00DA5F23 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86813FED2374FACE00DA5F23 /* SettingsViewController.swift */; };
-		86CC1B7923CF04AD00CAFA47 /* WorkStatesPressButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CC1B7823CF04AD00CAFA47 /* WorkStatesPressButtons.swift */; };
+		86CC1B7923CF04AD00CAFA47 /* ActionButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CC1B7823CF04AD00CAFA47 /* ActionButtons.swift */; };
 		86CC1B7F23CF09BE00CAFA47 /* States.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CC1B7E23CF09BE00CAFA47 /* States.swift */; };
-		86CC1B8123CF14D800CAFA47 /* WorkTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CC1B8023CF14D800CAFA47 /* WorkTimer.swift */; };
-		86CC1B8323CF162300CAFA47 /* ConfigShapeLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CC1B8223CF162300CAFA47 /* ConfigShapeLayer.swift */; };
+		86CC1B8323CF162300CAFA47 /* LabelWithShapesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CC1B8223CF162300CAFA47 /* LabelWithShapesView.swift */; };
 		9861D57DC2F19CD257E9DA5C /* Pods_Focus_Timer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18688B89D548CB8672DDB3A7 /* Pods_Focus_Timer.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		18688B89D548CB8672DDB3A7 /* Pods_Focus_Timer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Focus_Timer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		86323D262426265E004D367C /* TimerAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerAction.swift; sourceTree = "<group>"; };
+		8679043F2429D17000EF9128 /* test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = test.swift; sourceTree = "<group>"; };
 		86813FD02374EAE300DA5F23 /* Focus Timer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Focus Timer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		86813FD32374EAE300DA5F23 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		86813FD52374EAE300DA5F23 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		86813FD72374EAE300DA5F23 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		86813FD72374EAE300DA5F23 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		86813FDA2374EAE300DA5F23 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		86813FDC2374EAE600DA5F23 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		86813FDF2374EAE600DA5F23 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		86813FE12374EAE600DA5F23 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		86813FED2374FACE00DA5F23 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
-		86CC1B7823CF04AD00CAFA47 /* WorkStatesPressButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkStatesPressButtons.swift; sourceTree = "<group>"; };
+		86CC1B7823CF04AD00CAFA47 /* ActionButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButtons.swift; sourceTree = "<group>"; };
 		86CC1B7E23CF09BE00CAFA47 /* States.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = States.swift; sourceTree = "<group>"; };
-		86CC1B8023CF14D800CAFA47 /* WorkTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkTimer.swift; sourceTree = "<group>"; };
-		86CC1B8223CF162300CAFA47 /* ConfigShapeLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigShapeLayer.swift; sourceTree = "<group>"; };
+		86CC1B8223CF162300CAFA47 /* LabelWithShapesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelWithShapesView.swift; sourceTree = "<group>"; };
 		CDDC9E560FB4965617CC42E4 /* Pods-Focus Timer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Focus Timer.release.xcconfig"; path = "Target Support Files/Pods-Focus Timer/Pods-Focus Timer.release.xcconfig"; sourceTree = "<group>"; };
 		E9ED44CF9914AC45A0A10712 /* Pods-Focus Timer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Focus Timer.debug.xcconfig"; path = "Target Support Files/Pods-Focus Timer/Pods-Focus Timer.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -84,6 +86,7 @@
 		86813FE72374ECE500DA5F23 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				86323D262426265E004D367C /* TimerAction.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -100,12 +103,12 @@
 			isa = PBXGroup;
 			children = (
 				86813FD32374EAE300DA5F23 /* AppDelegate.swift */,
-				86813FD72374EAE300DA5F23 /* ViewController.swift */,
+				86813FD72374EAE300DA5F23 /* MainViewController.swift */,
 				86813FED2374FACE00DA5F23 /* SettingsViewController.swift */,
-				86CC1B7823CF04AD00CAFA47 /* WorkStatesPressButtons.swift */,
+				86CC1B7823CF04AD00CAFA47 /* ActionButtons.swift */,
 				86CC1B7E23CF09BE00CAFA47 /* States.swift */,
-				86CC1B8023CF14D800CAFA47 /* WorkTimer.swift */,
-				86CC1B8223CF162300CAFA47 /* ConfigShapeLayer.swift */,
+				86CC1B8223CF162300CAFA47 /* LabelWithShapesView.swift */,
+				8679043F2429D17000EF9128 /* test.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -235,12 +238,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				86CC1B7F23CF09BE00CAFA47 /* States.swift in Sources */,
-				86CC1B7923CF04AD00CAFA47 /* WorkStatesPressButtons.swift in Sources */,
-				86813FD82374EAE300DA5F23 /* ViewController.swift in Sources */,
+				86CC1B7923CF04AD00CAFA47 /* ActionButtons.swift in Sources */,
+				86323D272426265E004D367C /* TimerAction.swift in Sources */,
+				86813FD82374EAE300DA5F23 /* MainViewController.swift in Sources */,
+				867904402429D17000EF9128 /* test.swift in Sources */,
 				86813FD42374EAE300DA5F23 /* AppDelegate.swift in Sources */,
 				86813FD62374EAE300DA5F23 /* SceneDelegate.swift in Sources */,
-				86CC1B8323CF162300CAFA47 /* ConfigShapeLayer.swift in Sources */,
-				86CC1B8123CF14D800CAFA47 /* WorkTimer.swift in Sources */,
+				86CC1B8323CF162300CAFA47 /* LabelWithShapesView.swift in Sources */,
 				86813FEE2374FACE00DA5F23 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

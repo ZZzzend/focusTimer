@@ -13,10 +13,9 @@ class MainViewController: UIViewController {
   //  var timer: Timer?
   //  let userDefaults = UserDefaults.standard
 //    var timerController = TimerController()
-  //  var actionButtons = ActionButtons()
-    var tai = "HI view"
-    var testovi = Testovi()
+  //  var actionButtons: ActionButtons?
     
+//    var tai = "HI view"
     //MARK: Изначальное состояние приложения
     
     var state = State.initial {
@@ -38,25 +37,25 @@ class MainViewController: UIViewController {
     
     //MARK: Создание окружностей для таймера
 
-    var shapeLayer: CAShapeLayer! {
-        didSet {
-            shapeLayer.strokeColor = #colorLiteral(red: 0.951142132, green: 0.951142132, blue: 0.951142132, alpha: 1).cgColor
-            shapeLayer.lineWidth = 26.0
-            shapeLayer.lineCap = .round
-            shapeLayer.fillColor = nil
-            shapeLayer.strokeEnd = 1
-        }
-    }
-    
-    var overShapeLayer: CAShapeLayer! {
-        didSet {
-            overShapeLayer.strokeColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1).cgColor
-            overShapeLayer.lineWidth = 26.0
-            overShapeLayer.lineCap = .round
-            overShapeLayer.fillColor = nil
-            overShapeLayer.strokeEnd = 0
-        }
-    }
+//    var shapeLayer: CAShapeLayer! {
+//        didSet {
+//            shapeLayer.strokeColor = #colorLiteral(red: 0.951142132, green: 0.951142132, blue: 0.951142132, alpha: 1).cgColor
+//            shapeLayer.lineWidth = 26.0
+//            shapeLayer.lineCap = .round
+//            shapeLayer.fillColor = nil
+//            shapeLayer.strokeEnd = 1
+//        }
+//    }
+//
+//    var overShapeLayer: CAShapeLayer! {
+//        didSet {
+//            overShapeLayer.strokeColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1).cgColor
+//            overShapeLayer.lineWidth = 26.0
+//            overShapeLayer.lineCap = .round
+//            overShapeLayer.fillColor = nil
+//            overShapeLayer.strokeEnd = 0
+//        }
+//    }
 
     @IBOutlet weak var countTimersLabel: UILabel!
     @IBOutlet weak var labelTimer: UILabel!
@@ -69,23 +68,24 @@ class MainViewController: UIViewController {
         
         super.viewDidLoad()
         
+        
     //    timerController.userDefaultsWork()
         
         settingsButton.setImage(UIImage(named: "play.png"), for: .normal)
         
-        shapeLayer = CAShapeLayer()
-        view.layer.addSublayer(shapeLayer)
+ //       shapeLayer = CAShapeLayer()
+      //  view.layer.addSublayer()
         
-        overShapeLayer = CAShapeLayer()
-        view.layer.addSublayer(overShapeLayer)
+   //     overShapeLayer = CAShapeLayer()
+   //     view.layer.addSublayer(overShapeLayer)
         
         reloadInterface()
         
     }
     
     override func viewDidLayoutSubviews() {
-        configShapeLayer(shapeLayer)
-        configShapeLayer(overShapeLayer)
+     //   configShapeLayer(shapeLayer)
+     //   configShapeLayer(overShapeLayer)
     }
     
     //MARK: Начальный текст и цвет кнопок
@@ -101,12 +101,16 @@ class MainViewController: UIViewController {
 
     @IBAction func workAndPause(_ sender: UIButton) {
     //    actionButtons.workAndPauseState()
-        testovi.privet()
-    }
+//        let testovi = Testovi()
+//        testovi.viewController = self
+//        testovi.privet()
+//        testovi.privet2()
+        
+    } 
     
     @IBAction func breakAndStop(_ sender: UIButton) {
      //   actionButtons.breakAndStopState()
-     //   testovi.privet2()
+
     }
     
     //MARK: Сохраняет данные при переходе с SettingsViewContr.
