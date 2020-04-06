@@ -7,11 +7,15 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class MainViewController: UIViewController {
     
-    
-    var timer: Timer?
-    let userDefaults = UserDefaults.standard
+ //   let timerController = TimerController()
+  //  var timer: Timer?
+  //  let userDefaults = UserDefaults.standard
+//    var timerController = TimerController()
+  //  var actionButtons = ActionButtons()
+    var tai = "HI view"
+    var testovi = Testovi()
     
     //MARK: Изначальное состояние приложения
     
@@ -30,10 +34,7 @@ class ViewController: UIViewController {
     
     //MARK: время для таймера при 1) работе, 2) отдыхе, 3) паузы 4) и кол-во заверш. таймеров
     
-    var (workCounter, breakCounter, workPause, breakPause, countTimers) = (1500.00, 300.00, 0.00, 0.00, 0)
     
-    lazy var workCircleTimer = workCounter
-    lazy var breakCircleTimer = breakCounter
     
     //MARK: Создание окружностей для таймера
 
@@ -68,7 +69,7 @@ class ViewController: UIViewController {
         
         super.viewDidLoad()
         
-        userDefaultsWork()
+    //    timerController.userDefaultsWork()
         
         settingsButton.setImage(UIImage(named: "play.png"), for: .normal)
         
@@ -99,11 +100,13 @@ class ViewController: UIViewController {
     }
 
     @IBAction func workAndPause(_ sender: UIButton) {
-        workAndPauseState()
+    //    actionButtons.workAndPauseState()
+        testovi.privet()
     }
     
     @IBAction func breakAndStop(_ sender: UIButton) {
-       breakAndStopState()
+     //   actionButtons.breakAndStopState()
+     //   testovi.privet2()
     }
     
     //MARK: Сохраняет данные при переходе с SettingsViewContr.
@@ -111,6 +114,6 @@ class ViewController: UIViewController {
         @IBAction func unwindSegue(_ segue: UIStoryboardSegue) {
             guard let settingsVC = segue.source as? SettingsViewController else { return }
             settingsVC.saveSettings()
-            userDefaultsWork()
+    //        timerController.userDefaultsWork()
     }
 }
