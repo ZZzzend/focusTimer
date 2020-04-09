@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  MainViewController.swift
 //  Focus Timer
 //
 //  Created by Владислав on 08.11.2019.
@@ -23,7 +23,7 @@ class MainViewController: UIViewController {
     }
     
     //MARK: время для таймера при 1) работе, 2) отдыхе, 3) паузы 4) и кол-во заверш. таймеров
-
+    
     @IBOutlet weak var countTimersLabel: UILabel!
     @IBOutlet weak var labelTimer: UILabel!
     @IBOutlet weak var buttonSettings: UIButton!
@@ -37,23 +37,12 @@ class MainViewController: UIViewController {
         
         timerAction.viewController = self
         actionButtons.viewController = self
-    //    timerController.userDefaultsWork()
+        timerAction.userDefaultsWork()
         
         settingsButton.setImage(UIImage(named: "play.png"), for: .normal)
         
- //       shapeLayer = CAShapeLayer()
-      //  view.layer.addSublayer()
-        
-   //     overShapeLayer = CAShapeLayer()
-   //     view.layer.addSublayer(overShapeLayer)
-        
         reloadInterface()
         
-    }
-    
-    override func viewDidLayoutSubviews() {
-     //   configShapeLayer(shapeLayer)
-     //   configShapeLayer(overShapeLayer)
     }
     
     //MARK: Начальный текст и цвет кнопок
@@ -66,7 +55,7 @@ class MainViewController: UIViewController {
         buttonStop.backgroundColor = state.breakAndStopButtonColor
         
     }
-
+    
     @IBAction func workAndPause(_ sender: UIButton) {
         actionButtons.workAndPauseState()
     } 
@@ -77,9 +66,9 @@ class MainViewController: UIViewController {
     
     //MARK: Сохраняет данные при переходе с SettingsViewContr.
     
-        @IBAction func unwindSegue(_ segue: UIStoryboardSegue) {
-            guard let settingsVC = segue.source as? SettingsViewController else { return }
-            settingsVC.saveSettings()
-            timerAction.userDefaultsWork()
+    @IBAction func unwindSegue(_ segue: UIStoryboardSegue) {
+        guard let settingsVC = segue.source as? SettingsViewController else { return }
+        settingsVC.saveSettings()
+        timerAction.userDefaultsWork()
     }
 }

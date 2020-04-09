@@ -8,9 +8,9 @@
 import UIKit
 
 class SettingsViewController: UIViewController {
-
+    
     let userDefaults = UserDefaults.standard
-
+    
     @IBOutlet weak var timeWorkDatePicker: UIDatePicker!
     @IBOutlet weak var timeRestDatePicker: UIDatePicker!
     
@@ -19,7 +19,7 @@ class SettingsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         setCountDownDuration()
     }
     
@@ -29,17 +29,13 @@ class SettingsViewController: UIViewController {
         
         if  let timer = userDefaults.object(forKey: "timer") {
             timeWorkDatePicker.countDownDuration = (timer as? Double)!
-      //  } else {
-      //      timeWorkDatePicker.countDownDuration = 1500.00
         }
         if  let rest = userDefaults.object(forKey: "rest") {
             timeRestDatePicker.countDownDuration = (rest as? Double)!
-      //  } else {
-      //      timeRestDatePicker.countDownDuration = 300.00
         }
         
     }
-
+    
     func saveSettings() {
         userDefaults.setValue(timeWorkDatePicker.countDownDuration, forKey: "timer")
         userDefaults.setValue(timeRestDatePicker.countDownDuration, forKey: "rest")

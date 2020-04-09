@@ -1,5 +1,5 @@
 //
-//  TimerController.swift
+//  TimerAction.swift
 //  Focus Timer
 //
 //  Created by Владислав on 21.03.2020.
@@ -15,7 +15,7 @@ class TimerAction {
     let userDefaults = UserDefaults.standard
     weak var viewController: MainViewController?
     let labelWithShapesView = LabelWithShapesView()
-    var actionButtons: ActionButtons?
+    weak var actionButtons: ActionButtons?
     
     var (workCounter, breakCounter, workPause, breakPause, countTimers) = (30.00, 30.00, 0.00, 0.00, 0)
 
@@ -28,12 +28,16 @@ class TimerAction {
 
            if  let timer = userDefaults.object(forKey: "timer") {
                workCounter = (timer as? Double)!
+           } else {
+               workCounter = 30
            }
 
           // workCircleTimer = workCounter
 
            if  let rest = userDefaults.object(forKey: "rest") {
                breakCounter = (rest as? Double)!
+           } else {
+               breakCounter = 30
            }
 
            workCircleTimer = workCounter
@@ -81,9 +85,9 @@ class TimerAction {
     func exampleTime(count: Double) {
             if count > 0 {
                 if count >= 60 {
-                    labelWithShapesView.label.text = String(format: "%02d:%02d", Int(count) / 60, Int(count) % 60)
+                    labelWithShapesView.text = String(format: "%02d:%02d", Int(count) / 60, Int(count) % 60)
                 } else {
-                    labelWithShapesView.label.text = String(format: "%02d", Int(count))
+                    labelWithShapesView.text = String(format: "%02d", Int(count))
                 }
             }
 
