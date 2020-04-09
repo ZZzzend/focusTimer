@@ -9,13 +9,10 @@ import UIKit
 
 class MainViewController: UIViewController {
     
- //   let timerController = TimerController()
-  //  var timer: Timer?
-  //  let userDefaults = UserDefaults.standard
-//    var timerController = TimerController()
-  //  var actionButtons: ActionButtons?
     
-//    var tai = "HI view"
+    let timerAction = TimerAction()
+    let actionButtons = ActionButtons()
+    
     //MARK: Изначальное состояние приложения
     
     var state = State.initial {
@@ -25,37 +22,7 @@ class MainViewController: UIViewController {
         }
     }
     
-//    private var workCounter = 1500.00
-//    private var breakCounter = 300.00
-//    private var workPause = 0.00
-//    private var breakPause = 0.00
-//    private var countTimers = 0
-    
     //MARK: время для таймера при 1) работе, 2) отдыхе, 3) паузы 4) и кол-во заверш. таймеров
-    
-    
-    
-    //MARK: Создание окружностей для таймера
-
-//    var shapeLayer: CAShapeLayer! {
-//        didSet {
-//            shapeLayer.strokeColor = #colorLiteral(red: 0.951142132, green: 0.951142132, blue: 0.951142132, alpha: 1).cgColor
-//            shapeLayer.lineWidth = 26.0
-//            shapeLayer.lineCap = .round
-//            shapeLayer.fillColor = nil
-//            shapeLayer.strokeEnd = 1
-//        }
-//    }
-//
-//    var overShapeLayer: CAShapeLayer! {
-//        didSet {
-//            overShapeLayer.strokeColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1).cgColor
-//            overShapeLayer.lineWidth = 26.0
-//            overShapeLayer.lineCap = .round
-//            overShapeLayer.fillColor = nil
-//            overShapeLayer.strokeEnd = 0
-//        }
-//    }
 
     @IBOutlet weak var countTimersLabel: UILabel!
     @IBOutlet weak var labelTimer: UILabel!
@@ -68,7 +35,8 @@ class MainViewController: UIViewController {
         
         super.viewDidLoad()
         
-        
+        timerAction.viewController = self
+        actionButtons.viewController = self
     //    timerController.userDefaultsWork()
         
         settingsButton.setImage(UIImage(named: "play.png"), for: .normal)
@@ -100,17 +68,11 @@ class MainViewController: UIViewController {
     }
 
     @IBAction func workAndPause(_ sender: UIButton) {
-    //    actionButtons.workAndPauseState()
-//        let testovi = Testovi()
-//        testovi.viewController = self
-//        testovi.privet()
-//        testovi.privet2()
-        
+        actionButtons.workAndPauseState()
     } 
     
     @IBAction func breakAndStop(_ sender: UIButton) {
-     //   actionButtons.breakAndStopState()
-
+        actionButtons.breakAndStopState()
     }
     
     //MARK: Сохраняет данные при переходе с SettingsViewContr.
@@ -118,6 +80,6 @@ class MainViewController: UIViewController {
         @IBAction func unwindSegue(_ segue: UIStoryboardSegue) {
             guard let settingsVC = segue.source as? SettingsViewController else { return }
             settingsVC.saveSettings()
-    //        timerController.userDefaultsWork()
+            timerAction.userDefaultsWork()
     }
 }

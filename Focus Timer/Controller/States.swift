@@ -7,7 +7,7 @@
 
 import UIKit
 
-//extension ViewController {
+//extension MainViewController {
     
     indirect enum State {
         

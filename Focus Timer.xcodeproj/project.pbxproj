@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		86323D272426265E004D367C /* TimerAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86323D262426265E004D367C /* TimerAction.swift */; };
-		867904402429D17000EF9128 /* test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8679043F2429D17000EF9128 /* test.swift */; };
 		86813FD42374EAE300DA5F23 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86813FD32374EAE300DA5F23 /* AppDelegate.swift */; };
 		86813FD62374EAE300DA5F23 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86813FD52374EAE300DA5F23 /* SceneDelegate.swift */; };
 		86813FD82374EAE300DA5F23 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86813FD72374EAE300DA5F23 /* MainViewController.swift */; };
@@ -25,7 +24,6 @@
 /* Begin PBXFileReference section */
 		18688B89D548CB8672DDB3A7 /* Pods_Focus_Timer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Focus_Timer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		86323D262426265E004D367C /* TimerAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerAction.swift; sourceTree = "<group>"; };
-		8679043F2429D17000EF9128 /* test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = test.swift; sourceTree = "<group>"; };
 		86813FD02374EAE300DA5F23 /* Focus Timer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Focus Timer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		86813FD32374EAE300DA5F23 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		86813FD52374EAE300DA5F23 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -106,9 +104,8 @@
 				86813FD72374EAE300DA5F23 /* MainViewController.swift */,
 				86813FED2374FACE00DA5F23 /* SettingsViewController.swift */,
 				86CC1B7823CF04AD00CAFA47 /* ActionButtons.swift */,
-				86CC1B7E23CF09BE00CAFA47 /* States.swift */,
 				86CC1B8223CF162300CAFA47 /* LabelWithShapesView.swift */,
-				8679043F2429D17000EF9128 /* test.swift */,
+				86CC1B7E23CF09BE00CAFA47 /* States.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -241,7 +238,6 @@
 				86CC1B7923CF04AD00CAFA47 /* ActionButtons.swift in Sources */,
 				86323D272426265E004D367C /* TimerAction.swift in Sources */,
 				86813FD82374EAE300DA5F23 /* MainViewController.swift in Sources */,
-				867904402429D17000EF9128 /* test.swift in Sources */,
 				86813FD42374EAE300DA5F23 /* AppDelegate.swift in Sources */,
 				86813FD62374EAE300DA5F23 /* SceneDelegate.swift in Sources */,
 				86CC1B8323CF162300CAFA47 /* LabelWithShapesView.swift in Sources */,
