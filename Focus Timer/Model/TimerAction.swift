@@ -32,8 +32,6 @@ class TimerAction {
                workCounter = 30
            }
 
-          // workCircleTimer = workCounter
-
            if  let rest = userDefaults.object(forKey: "rest") {
                breakCounter = (rest as? Double)!
            } else {
@@ -42,12 +40,11 @@ class TimerAction {
 
            workCircleTimer = workCounter
            breakCircleTimer = breakCounter
-     //   labelWithShapesView.overShapeLayer.strokeEnd = 1
         labelWithShapesView.text = String(format: "%02d:%02d", Int(workCounter) / 60, Int(workCounter) % 60)
        }
     
-    func timerSheduled(select: Selector)  {
-        timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: select, userInfo: Date(), repeats: true)
+    func timerSheduled(selector: Selector)  {
+        timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: selector, userInfo: Date(), repeats: true)
     }
 
     //MARK: старт таймера при 1) Работе 2) Перерыве 3) Возобнов. работы 4) Возобн. перерыва
