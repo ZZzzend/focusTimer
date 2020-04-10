@@ -13,8 +13,7 @@ class TimerAction {
 
     var timer: Timer?
     let userDefaults = UserDefaults.standard
-    weak var viewController: MainViewController?
-    let labelWithShapesView = LabelWithShapesView()
+    var viewController: MainViewController?
     weak var actionButtons: ActionButtons?
     
     var (workCounter, breakCounter, workPause, breakPause, countTimers) = (30.00, 30.00, 0.00, 0.00, 0)
@@ -40,11 +39,13 @@ class TimerAction {
 
            workCircleTimer = workCounter
            breakCircleTimer = breakCounter
-        labelWithShapesView.text = String(format: "%02d:%02d", Int(workCounter) / 60, Int(workCounter) % 60)
+        viewController?.labelwithShapesView.label.text = String(format: "%02d:%02d", Int(workCounter) / 60, Int(workCounter) % 60)
+     //   timerSheduled(selector: #selector(updateCounter))
        }
     
     func timerSheduled(selector: Selector)  {
         timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: selector, userInfo: Date(), repeats: true)
+        
     }
 
     //MARK: старт таймера при 1) Работе 2) Перерыве 3) Возобнов. работы 4) Возобн. перерыва
@@ -82,9 +83,9 @@ class TimerAction {
     func exampleTime(count: Double) {
             if count > 0 {
                 if count >= 60 {
-                    labelWithShapesView.text = String(format: "%02d:%02d", Int(count) / 60, Int(count) % 60)
+                    viewController?.labelwithShapesView.label.text = String(format: "%02d:%02d", Int(count) / 60, Int(count) % 60)
                 } else {
-                    labelWithShapesView.text = String(format: "%02d", Int(count))
+                    viewController?.labelwithShapesView.label.text = String(format: "%02d", Int(count))
                 }
             }
 
@@ -99,7 +100,7 @@ class TimerAction {
     func decrement (count: inout Double, circleTimer: inout Double){
         if count > 0 {
             count = circleTimer + (self.timer?.userInfo as! Date).timeIntervalSinceNow
-            labelWithShapesView.overShapeLayer.strokeEnd = CGFloat(-(self.timer?.userInfo as! Date).timeIntervalSinceNow) / CGFloat(circleTimer)
+            viewController?.labelwithShapesView.overShapeLayer.strokeEnd = CGFloat(-(self.timer?.userInfo as! Date).timeIntervalSinceNow) / CGFloat(circleTimer)
          }
 
     }
@@ -107,7 +108,7 @@ class TimerAction {
     func decrementPause (count: inout Double, circleTimer: inout Double, pause: inout Double){
         if count > 0 {
             count = circleTimer - pause + (self.timer?.userInfo as! Date).timeIntervalSinceNow
-            labelWithShapesView.overShapeLayer.strokeEnd = CGFloat(-(self.timer?.userInfo as! Date).timeIntervalSinceNow + pause) / CGFloat(circleTimer)
+            viewController?.labelwithShapesView.overShapeLayer.strokeEnd = CGFloat(-(self.timer?.userInfo as! Date).timeIntervalSinceNow + pause) / CGFloat(circleTimer)
          }
     }
 }

@@ -34,7 +34,7 @@ indirect enum State {
     var workAndPauseButtonColor: UIColor {
         switch self {
         case .initial:
-            return #colorLiteral(red: 0.3579321173, green: 0.7841776604, blue: 0.3394897625, alpha: 1)
+            return #colorLiteral(red: 0.3568627451, green: 0.7841776604, blue: 0.3394897625, alpha: 1) 
         case .workTimerIsActive:
             return #colorLiteral(red: 0.2392156863, green: 0.6745098039, blue: 0.968627451, alpha: 1)
         case .breakTimerIsActive:

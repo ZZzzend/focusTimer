@@ -9,43 +9,35 @@ import UIKit
 
 class ActionButtons {
     
-    var viewController: MainViewController?
-    let timerAction = TimerAction()
-    weak var labelWithShapesView = LabelWithShapesView()
-
-    init() {
-        timerAction.actionButtons = self
-    }
-    
+    var mainViewController: MainViewController?
     
     //MARK: Изменение State при нажатии кнопки "Начать работу/Пауза/Возобновить"
     
     func workAndPauseState() {
-        switch viewController?.state {
+        switch mainViewController?.state {
         case .initial:
-            viewController?.state = .workTimerIsActive
-            // timerAction.timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(timerAction.updateCounter), userInfo: Date(), repeats: true)
-            timerAction.timerSheduled(selector: #selector(timerAction.updateCounter))
+            mainViewController?.state = .workTimerIsActive
+            mainViewController?.timerAction.timerSheduled(selector: #selector(mainViewController?.timerAction.updateCounter))
             
         case .workTimerIsActive:
-            viewController?.state = .pauseTimer(secondsRemaind: (timerAction.self.timer?.userInfo as! Date).timeIntervalSinceNow, previousState: .workTimerIsActive)
-            timerAction.timer?.invalidate()
-            timerAction.workPause = timerAction.workCircleTimer - timerAction.workCounter
+            mainViewController?.state = .pauseTimer(secondsRemaind: (mainViewController?.timerAction.self.timer?.userInfo as! Date).timeIntervalSinceNow, previousState: .workTimerIsActive)
+            mainViewController?.timerAction.timer?.invalidate()
+            mainViewController?.timerAction.workPause = (mainViewController?.timerAction.workCircleTimer)! - (mainViewController?.timerAction.workCounter)!
             
         case .breakTimerIsActive:
-            viewController?.state = .pauseTimer(secondsRemaind: (timerAction.self.timer?.userInfo as! Date).timeIntervalSinceNow, previousState: .breakTimerIsActive)
-            timerAction.timer?.invalidate()
-            timerAction.breakPause = timerAction.breakCircleTimer - timerAction.breakCounter
+            mainViewController?.state = .pauseTimer(secondsRemaind: (mainViewController?.timerAction.self.timer?.userInfo as! Date).timeIntervalSinceNow, previousState: .breakTimerIsActive)
+            mainViewController?.timerAction.timer?.invalidate()
+            mainViewController?.timerAction.breakPause = (mainViewController?.timerAction.breakCircleTimer)! - (mainViewController?.timerAction.breakCounter)!
             
         case .pauseTimer(let secondsRemaind, let previousState):
-            viewController?.state = previousState
+            mainViewController?.state = previousState
             
             switch previousState {
             case .workTimerIsActive:
-                timerAction.timerSheduled(selector: #selector(timerAction.unpauseCounter))
+                mainViewController?.timerAction.timerSheduled(selector: #selector(mainViewController?.timerAction.unpauseCounter))
                 
             case .breakTimerIsActive:
-                timerAction.timerSheduled(selector: #selector(timerAction.breakUnpauseCounter))
+                mainViewController?.timerAction.timerSheduled(selector: #selector(mainViewController?.timerAction.breakUnpauseCounter))
                 
             case .initial:
                 break
@@ -62,14 +54,14 @@ class ActionButtons {
     //MARK: Изменение State при нажатии кнопки "Перерыв/Остановить"
     
     func breakAndStopState() {
-        switch viewController?.state {
+        switch mainViewController?.state {
             
         case .initial:
-            viewController?.state = .breakTimerIsActive
-            labelWithShapesView?.label.textColor = #colorLiteral(red: 0.2965636993, green: 0.6915442732, blue: 0.3586270114, alpha: 1)
-            labelWithShapesView?.overShapeLayer.strokeColor = #colorLiteral(red: 0.368627451, green: 0.862745098, blue: 0.4392156863, alpha: 1).cgColor
-            labelWithShapesView?.label.text = String(format: "%02d:%02d", Int(timerAction.breakCounter) / 60, Int(timerAction.breakCounter) % 60)
-            timerAction.timerSheduled(selector: #selector(timerAction.restCounter))
+            mainViewController?.state = .breakTimerIsActive
+            mainViewController?.labelwithShapesView.label.textColor = #colorLiteral(red: 0.2965636993, green: 0.6915442732, blue: 0.3586270114, alpha: 1)
+            mainViewController?.labelwithShapesView.overShapeLayer.strokeColor = #colorLiteral(red: 0.368627451, green: 0.862745098, blue: 0.4392156863, alpha: 1).cgColor
+            mainViewController?.labelwithShapesView.label.text = String(format: "%02d:%02d", Int(mainViewController!.timerAction.breakCounter) / 60, Int(mainViewController!.timerAction.breakCounter) % 60)
+            mainViewController?.timerAction.timerSheduled(selector: #selector(mainViewController?.timerAction.restCounter))
             
         case .workTimerIsActive:
             dischargeTimer()
@@ -88,12 +80,12 @@ class ActionButtons {
     //MARK: Действия, при нажатии кнопки "Остановить"
     
     func dischargeTimer() {
-        viewController?.state = .initial
-        timerAction.timer?.invalidate()
-        timerAction.userDefaultsWork()
+        mainViewController?.state = .initial
+        mainViewController?.timerAction.timer?.invalidate()
+        mainViewController?.timerAction.userDefaultsWork()
         
-        labelWithShapesView?.overShapeLayer.strokeEnd = 0
-        labelWithShapesView?.overShapeLayer.strokeColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1).cgColor
-        labelWithShapesView?.label.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        mainViewController?.labelwithShapesView.overShapeLayer.strokeEnd = 0
+        mainViewController?.labelwithShapesView.overShapeLayer.strokeColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1).cgColor
+        mainViewController?.labelwithShapesView.label.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
     }
 }

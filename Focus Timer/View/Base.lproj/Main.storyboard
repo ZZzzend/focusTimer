@@ -108,6 +108,7 @@
                         <outlet property="buttonStop" destination="dQj-hf-7xs" id="QU5-6v-asq"/>
                         <outlet property="countTimersLabel" destination="IOj-LR-OYm" id="NpZ-mn-fdG"/>
                         <outlet property="labelTimer" destination="LEJ-7C-MJs" id="gUO-Jn-HnL"/>
+                        <outlet property="labelwithShapesView" destination="qUU-QS-Ij1" id="qe1-Ql-7Zp"/>
                         <outlet property="settingsButton" destination="Xy6-MQ-a3t" id="u1D-i4-TDm"/>
                     </connections>
                 </viewController>

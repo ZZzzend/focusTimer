@@ -9,9 +9,10 @@ import UIKit
 
 class MainViewController: UIViewController {
     
-    
-    let timerAction = TimerAction()
     let actionButtons = ActionButtons()
+    let timerAction = TimerAction()
+    
+  //  let labelWithShapesView = LabelWithShapesView()
     
     //MARK: Изначальное состояние приложения
     
@@ -30,13 +31,16 @@ class MainViewController: UIViewController {
     @IBOutlet weak var buttonPause: UIButton!
     @IBOutlet weak var buttonStop: UIButton!
     @IBOutlet weak var settingsButton: UIButton!
+    @IBOutlet weak var labelwithShapesView: LabelWithShapesView!
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
         
+        
+        actionButtons.mainViewController = self
         timerAction.viewController = self
-        actionButtons.viewController = self
+        timerAction.actionButtons = actionButtons
         timerAction.userDefaultsWork()
         
         settingsButton.setImage(UIImage(named: "play.png"), for: .normal)
@@ -58,6 +62,7 @@ class MainViewController: UIViewController {
     
     @IBAction func workAndPause(_ sender: UIButton) {
         actionButtons.workAndPauseState()
+      //  timerAction.timerSheduled(selector: #selector(timerAction.updateCounter))
     } 
     
     @IBAction func breakAndStop(_ sender: UIButton) {
