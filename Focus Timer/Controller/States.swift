@@ -13,8 +13,7 @@ indirect enum State {
     
     case initial,
     workTimerIsActive,
-    breakTimerIsActive,
-    pauseTimer(secondsRemaind: TimeInterval, previousState: State)
+    pauseTimer
     
     //MARK: текст и цвет кнопок, в зависим. от состояния
     
@@ -24,9 +23,7 @@ indirect enum State {
             return "Начать работу"
         case .workTimerIsActive:
             return "Пауза"
-        case .breakTimerIsActive:
-            return "Пауза"
-        case .pauseTimer( _):
+        case .pauseTimer:
             return "Возобновить"
         }
     }
@@ -34,13 +31,11 @@ indirect enum State {
     var workAndPauseButtonColor: UIColor {
         switch self {
         case .initial:
-            return #colorLiteral(red: 0.3568627451, green: 0.7841776604, blue: 0.3394897625, alpha: 1) 
+            return UIColor(named: "AppGreen")!
         case .workTimerIsActive:
-            return #colorLiteral(red: 0.2392156863, green: 0.6745098039, blue: 0.968627451, alpha: 1)
-        case .breakTimerIsActive:
-            return #colorLiteral(red: 0.2392156863, green: 0.6745098039, blue: 0.968627451, alpha: 1)
-        case .pauseTimer( _):
-            return #colorLiteral(red: 0.3579321173, green: 0.7841776604, blue: 0.3394897625, alpha: 1)
+            return UIColor(named: "AppBlue")!
+        case .pauseTimer:
+            return UIColor(named: "AppGreen")!
         }
     }
     
@@ -50,9 +45,7 @@ indirect enum State {
             return "Перерыв"
         case .workTimerIsActive:
             return "Остановить"
-        case .breakTimerIsActive:
-            return "Остановить"
-        case .pauseTimer( _):
+        case .pauseTimer:
             return "Остановить"
         }
     }
@@ -60,13 +53,11 @@ indirect enum State {
     var breakAndStopButtonColor: UIColor {
         switch self {
         case .initial:
-            return #colorLiteral(red: 0.2392156863, green: 0.6745098039, blue: 0.968627451, alpha: 1)
+            return UIColor(named: "AppBlue")!
         case .workTimerIsActive:
-            return #colorLiteral(red: 1, green: 0, blue: 0, alpha: 1)
-        case .breakTimerIsActive:
-            return #colorLiteral(red: 1, green: 0, blue: 0, alpha: 1)
-        case .pauseTimer( _):
-            return #colorLiteral(red: 1, green: 0, blue: 0, alpha: 1)
+            return UIColor(named: "AppRed")!
+        case .pauseTimer:
+            return UIColor(named: "AppRed")!
         }
     }
 }

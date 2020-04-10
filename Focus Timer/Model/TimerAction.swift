@@ -16,42 +16,29 @@ class TimerAction {
     var viewController: MainViewController?
     weak var actionButtons: ActionButtons?
     
-    var (workCounter, breakCounter, workPause, breakPause, countTimers) = (30.00, 30.00, 0.00, 0.00, 0)
+    var (workCounter, workCircleTimer, workPause, countTimers)
+        = (1500.00,       1500.00,       0.00,         0)
 
-    var workCircleTimer = 30.00
-    var breakCircleTimer = 30.00
 
     //MARK: Данные с userDefaults для таймера
-
-       func userDefaultsWork() {
-
-           if  let timer = userDefaults.object(forKey: "timer") {
-               workCounter = (timer as? Double)!
-           } else {
-               workCounter = 30
-           }
-
-           if  let rest = userDefaults.object(forKey: "rest") {
-               breakCounter = (rest as? Double)!
-           } else {
-               breakCounter = 30
-           }
-
-           workCircleTimer = workCounter
-           breakCircleTimer = breakCounter
-        viewController?.labelwithShapesView.label.text = String(format: "%02d:%02d", Int(workCounter) / 60, Int(workCounter) % 60)
-     //   timerSheduled(selector: #selector(updateCounter))
-       }
     
-    func timerSheduled(selector: Selector)  {
-        timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: selector, userInfo: Date(), repeats: true)
+    func userDefaultsWork(counter: Double) {
+        workCounter = counter
+        workCircleTimer = workCounter
+        
+        viewController?.labelwithShapesView.label.text = String(format: "%02d:%02d", Int(workCounter) / 60, Int(workCounter) % 60)
+    }
+    
+    func timerSheduled()  {
+        
+        timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(updateCounter), userInfo: Date(), repeats: true)
         
     }
 
-    //MARK: старт таймера при 1) Работе 2) Перерыве 3) Возобнов. работы 4) Возобн. перерыва
+    //MARK: старт таймера при работе
 
     @objc func updateCounter() {
-        decrement(count: &workCounter, circleTimer: &workCircleTimer)
+        decrementPause(count: &workCounter, circleTimer: &workCircleTimer, pause: &workPause)
         if workCounter < 1 {
             countTimers += 1
             viewController?.countTimersLabel.text = "Завершенные таймеры: \(countTimers)"
@@ -60,25 +47,7 @@ class TimerAction {
 
     }
 
-    @objc func restCounter() {
-        decrement(count: &breakCounter, circleTimer: &breakCircleTimer)
-        exampleTime(count: breakCounter)
-
-    }
-
-    @objc func unpauseCounter() {
-        decrementPause(count: &workCounter, circleTimer: &workCircleTimer, pause: &workPause)
-        exampleTime(count: workCounter)
-
-    }
-
-    @objc func breakUnpauseCounter() {
-        decrementPause(count: &breakCounter, circleTimer: &breakCircleTimer, pause: &breakPause)
-        exampleTime(count: breakCounter)
-
-    }
-
-    //MARK: Отображение времени таймера в label
+    //MARK:  Отображение времени таймера в label
 
     func exampleTime(count: Double) {
             if count > 0 {
@@ -95,15 +64,6 @@ class TimerAction {
             }
     }
 
-    //MARK: Подсчет времени таймера
-
-    func decrement (count: inout Double, circleTimer: inout Double){
-        if count > 0 {
-            count = circleTimer + (self.timer?.userInfo as! Date).timeIntervalSinceNow
-            viewController?.labelwithShapesView.overShapeLayer.strokeEnd = CGFloat(-(self.timer?.userInfo as! Date).timeIntervalSinceNow) / CGFloat(circleTimer)
-         }
-
-    }
 
     func decrementPause (count: inout Double, circleTimer: inout Double, pause: inout Double){
         if count > 0 {

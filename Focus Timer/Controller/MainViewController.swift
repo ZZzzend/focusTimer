@@ -12,8 +12,6 @@ class MainViewController: UIViewController {
     let actionButtons = ActionButtons()
     let timerAction = TimerAction()
     
-  //  let labelWithShapesView = LabelWithShapesView()
-    
     //MARK: Изначальное состояние приложения
     
     var state = State.initial {
@@ -41,7 +39,7 @@ class MainViewController: UIViewController {
         actionButtons.mainViewController = self
         timerAction.viewController = self
         timerAction.actionButtons = actionButtons
-        timerAction.userDefaultsWork()
+        timerAction.userDefaultsWork(counter: timerAction.userDefaults.object(forKey: "timer") as? Double ?? 1500.00)
         
         settingsButton.setImage(UIImage(named: "play.png"), for: .normal)
         
@@ -62,7 +60,6 @@ class MainViewController: UIViewController {
     
     @IBAction func workAndPause(_ sender: UIButton) {
         actionButtons.workAndPauseState()
-      //  timerAction.timerSheduled(selector: #selector(timerAction.updateCounter))
     } 
     
     @IBAction func breakAndStop(_ sender: UIButton) {
@@ -74,6 +71,6 @@ class MainViewController: UIViewController {
     @IBAction func unwindSegue(_ segue: UIStoryboardSegue) {
         guard let settingsVC = segue.source as? SettingsViewController else { return }
         settingsVC.saveSettings()
-        timerAction.userDefaultsWork()
+        timerAction.userDefaultsWork(counter: timerAction.userDefaults.object(forKey: "timer") as? Double ?? 1500.00)
     }
 }
