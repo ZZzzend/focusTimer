@@ -37,8 +37,21 @@ class MainViewController: UIViewController {
         
         
         actionButtons.mainViewController = self
-        timerAction.viewController = self
-        timerAction.actionButtons = actionButtons
+        
+        
+        timerAction.textUpdated = { [weak self] time in
+            return self?.labelwithShapesView.label.text = time
+
+        }
+        
+        timerAction.strokeEndUpdated = { [weak self] time in
+            return self?.labelwithShapesView.overShapeLayer.strokeEnd = time
+        }
+        
+        timerAction.dischargeTimer = { [weak self] in
+            return self?.actionButtons.dischargeTimer()
+        }
+        
         timerAction.userDefaultsWork(counter: timerAction.userDefaults.object(forKey: "timer") as? Double ?? 1500.00)
         
         settingsButton.setImage(UIImage(named: "play.png"), for: .normal)

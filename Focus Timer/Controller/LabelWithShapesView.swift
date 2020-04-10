@@ -10,25 +10,12 @@ import UIKit
 class LabelWithShapesView: UIView {
     
     var label = UILabel()
-    
     var shapeLayer = CAShapeLayer()
-    
     var overShapeLayer = CAShapeLayer()
     
-    var text: String = "" {
-        didSet {
-            label.text = text
-        }
-    }
-    
-    var foregroundColor = UIColor() {
-        didSet {
-            overShapeLayer.strokeColor = (foregroundColor as! CGColor)
-        }
-    }
     override init(frame: CGRect) {
         super.init(frame: frame)
-        commonInit()
+  //      commonInit()
     }
     
     required init?(coder: NSCoder) {
@@ -38,12 +25,6 @@ class LabelWithShapesView: UIView {
         configShapeLayer(shapeLayer, color: #colorLiteral(red: 0.951142132, green: 0.951142132, blue: 0.951142132, alpha: 1).cgColor, strokeEnd: 1)
         configShapeLayer(overShapeLayer, color: #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1).cgColor, strokeEnd: 0)
         commonInit()
-    }
-    
-    convenience init(frame: CGRect, text: String, foregroundColor: UIColor) {
-        self.init(frame: frame)
-        label.text = text
-        overShapeLayer.strokeColor = (foregroundColor as! CGColor)
     }
     
     func commonInit() {
