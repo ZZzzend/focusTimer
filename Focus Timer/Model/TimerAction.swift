@@ -5,7 +5,6 @@
 //  Created by Владислав on 21.03.2020.
 //
 
-import Foundation
 import AVFoundation
 import AudioToolbox
 
@@ -15,18 +14,22 @@ class TimerAction {
     let userDefaults = UserDefaults.standard
     var textUpdated: ((_ time: String) -> Void)?
     var strokeEndUpdated: ((_ time: CGFloat) -> Void)?
-    var countUpdated: ((_ time: String) -> Void)?
+    var labelCountUpdated: ((_ time: Int) -> Void)?
     var dischargeTimer: (() -> Void)?
     
-    var (workCounter, workCircleTimer, workPause, countTimers)
-        = (1500.00,       1500.00,       0.00,         0)
+    var (workCounter, workCircleTimer, workPause, countTimers, timerFinished)
+        = (1500.00,       1500.00,       0.00,         0,          false)
 
 
     //MARK: Данные с userDefaults для таймера
     
-    func userDefaultsWork(counter: Double) {
+    func userDefaultsWork(counter: Double, shouldUpdateCounter: Bool? = nil) {
         workCounter = counter
         workCircleTimer = workCounter
+        
+        if shouldUpdateCounter != nil {
+            timerFinished = shouldUpdateCounter!
+        }
         
         textUpdated?(String(format: "%02d:%02d", Int(workCounter) / 60, Int(workCounter) % 60))
         
@@ -42,9 +45,9 @@ class TimerAction {
 
     @objc func updateCounter() {
         decrementPause(count: &workCounter, circleTimer: &workCircleTimer, pause: &workPause)
-        if workCounter < 1 {
-            countTimers += 1
-          //  viewController?.countTimersLabel.text = "Завершенные таймеры: \(countTimers)"
+        if workCounter < 1 && timerFinished == true {
+           countTimers += 1
+           labelCountUpdated?(countTimers)
         }
         exampleTime(count: workCounter)
 

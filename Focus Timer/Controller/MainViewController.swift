@@ -12,16 +12,6 @@ class MainViewController: UIViewController {
     let actionButtons = ActionButtons()
     let timerAction = TimerAction()
     
-    //MARK: Изначальное состояние приложения
-    
-    var state = State.initial {
-        didSet {
-            guard isViewLoaded else { return }
-            reloadInterface()
-        }
-    }
-    
-    //MARK: время для таймера при 1) работе, 2) отдыхе, 3) паузы 4) и кол-во заверш. таймеров
     
     @IBOutlet weak var countTimersLabel: UILabel!
     @IBOutlet weak var labelTimer: UILabel!
@@ -35,13 +25,9 @@ class MainViewController: UIViewController {
         
         super.viewDidLoad()
         
-        
-        actionButtons.mainViewController = self
-        
-        
         timerAction.textUpdated = { [weak self] time in
             return self?.labelwithShapesView.label.text = time
-
+            
         }
         
         timerAction.strokeEndUpdated = { [weak self] time in
@@ -49,8 +35,30 @@ class MainViewController: UIViewController {
         }
         
         timerAction.dischargeTimer = { [weak self] in
-            return self?.actionButtons.dischargeTimer()
+            return self?.dischargeTimer()
         }
+        
+        timerAction.labelCountUpdated = { [weak self] time in
+            return self?.countTimersLabel.text = "Завершенные таймеры: \(time)"
+            
+        }
+        
+        actionButtons.reloadInterface = { [weak self] in
+            return self?.reloadInterface()
+        }
+        
+        actionButtons.actionStates = { [weak self] work in
+            return self?.actionStates(buttonWork: work)
+        }
+        
+        actionButtons.dischargeTimer = { [weak self] in
+            return self?.dischargeTimer()
+        }
+        
+        actionButtons.timerSheduled = { [weak self] in
+            return self?.timerAction.timerSheduled()
+        }
+        
         
         timerAction.userDefaultsWork(counter: timerAction.userDefaults.object(forKey: "timer") as? Double ?? 1500.00)
         
@@ -63,11 +71,12 @@ class MainViewController: UIViewController {
     //MARK: Начальный текст и цвет кнопок
     
     func reloadInterface() {
-        buttonPause.setTitle(state.workAndPauseButtonTitle, for: .normal)
-        buttonPause.backgroundColor = state.workAndPauseButtonColor
+        guard isViewLoaded else { return }
+        buttonPause.setTitle(actionButtons.state.workAndPauseButtonTitle, for: .normal)
+        buttonPause.backgroundColor = actionButtons.state.workAndPauseButtonColor
         
-        buttonStop.setTitle(state.breakAndStopButtonTitle, for: .normal)
-        buttonStop.backgroundColor = state.breakAndStopButtonColor
+        buttonStop.setTitle(actionButtons.state.breakAndStopButtonTitle, for: .normal)
+        buttonStop.backgroundColor = actionButtons.state.breakAndStopButtonColor
         
     }
     
@@ -78,6 +87,7 @@ class MainViewController: UIViewController {
     @IBAction func breakAndStop(_ sender: UIButton) {
         actionButtons.breakAndStopState()
     }
+    
     
     //MARK: Сохраняет данные при переходе с SettingsViewContr.
     
