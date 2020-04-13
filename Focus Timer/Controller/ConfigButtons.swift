@@ -9,8 +9,11 @@ import UIKit
 
 extension MainViewController {
     func actionStates(buttonWork: Bool) {
+        
         switch actionButtons.state {
+            
         case .workTimerIsActive:
+            
             if buttonWork == true {
                 timerAction.userDefaultsWork(counter: timerAction.userDefaults.object(forKey: "timer") as? Double ?? 1500.00, shouldUpdateCounter: true)
             } else {
@@ -20,16 +23,12 @@ extension MainViewController {
                 
                 labelwithShapesView.overShapeLayer.strokeColor = UIColor(named: "AppGreen")?.cgColor
                 
-                
-                labelwithShapesView.label.text = String(format: "%02d:%02d", Int(timerAction.workCounter) / 60, Int(timerAction.workCounter) % 60)
             }
         case .pauseTimer:
             if buttonWork == true {
                 timerAction.timer?.invalidate()
                 
                 timerAction.workPause = timerAction.workCircleTimer - timerAction.workCounter
-            } else {
-                
             }
         case .initial:
             break

@@ -40,7 +40,6 @@ class MainViewController: UIViewController {
         
         timerAction.labelCountUpdated = { [weak self] time in
             return self?.countTimersLabel.text = "Завершенные таймеры: \(time)"
-            
         }
         
         actionButtons.reloadInterface = { [weak self] in
