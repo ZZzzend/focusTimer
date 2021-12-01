@@ -15,15 +15,17 @@ class LabelWithShapesView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-  //      commonInit()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
+        
         label.text = "25:00"
         label.font = UIFont(name: "Arial Rounded MT Bold", size: 60)
+        
         configShapeLayer(shapeLayer, color: #colorLiteral(red: 0.951142132, green: 0.951142132, blue: 0.951142132, alpha: 1).cgColor, strokeEnd: 1)
         configShapeLayer(overShapeLayer, color: #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1).cgColor, strokeEnd: 0)
+        
         commonInit()
     }
     
@@ -66,4 +68,5 @@ class LabelWithShapesView: UIView {
         label.center = CGPoint(x: CGFloat(self.bounds.size.width / 2), y: CGFloat(self.bounds.size.height / 2))
         label.textAlignment = .center
     }
+    
 }

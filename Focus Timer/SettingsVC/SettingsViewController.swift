@@ -19,26 +19,25 @@ class SettingsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         setCountDownDuration()
     }
     
     //MARK: Данные для таймера в UserDefaults
     
     func setCountDownDuration() {
-        
         if  let timer = userDefaults.object(forKey: "timer") {
             timeWorkDatePicker.countDownDuration = (timer as? Double)!
         }
+        
         if  let rest = userDefaults.object(forKey: "rest") {
             timeRestDatePicker.countDownDuration = (rest as? Double)!
         }
-        
     }
     
     func saveSettings() {
         userDefaults.setValue(timeWorkDatePicker.countDownDuration, forKey: "timer")
         userDefaults.setValue(timeRestDatePicker.countDownDuration, forKey: "rest")
-        
     }
     
     @IBAction func cancelAction(_ sender: Any) {

@@ -9,8 +9,8 @@ import UIKit
 
 class MainViewController: UIViewController {
     
-    let actionButtons = ActionButtons()
     let timerAction = TimerAction()
+    lazy var actionButtons = ActionButtons(timerAction: self.timerAction, labelwithShapesView: self.labelwithShapesView)
     
     
     @IBOutlet weak var countTimersLabel: UILabel!
@@ -25,46 +25,35 @@ class MainViewController: UIViewController {
         
         super.viewDidLoad()
         
-        timerAction.textUpdated = { [weak self] time in
-            return self?.labelwithShapesView.label.text = time
-            
-        }
-        
-        timerAction.strokeEndUpdated = { [weak self] time in
-            return self?.labelwithShapesView.overShapeLayer.strokeEnd = time
-        }
-        
-        timerAction.dischargeTimer = { [weak self] in
-            return self?.dischargeTimer()
-        }
-        
-        timerAction.labelCountUpdated = { [weak self] time in
-            return self?.countTimersLabel.text = "Завершенные таймеры: \(time)"
-        }
-        
-        actionButtons.reloadInterface = { [weak self] in
-            return self?.reloadInterface()
-        }
-        
-        actionButtons.actionStates = { [weak self] work in
-            return self?.actionStates(buttonWork: work)
-        }
-        
-        actionButtons.dischargeTimer = { [weak self] in
-            return self?.dischargeTimer()
-        }
-        
-        actionButtons.timerSheduled = { [weak self] in
-            return self?.timerAction.timerSheduled()
-        }
-        
+        dataInTimerAction()
+        dataInActionButtons()
         
         timerAction.userDefaultsWork(counter: timerAction.userDefaults.object(forKey: "timer") as? Double ?? 1500.00)
         
-        settingsButton.setImage(UIImage(named: "play.png"), for: .normal)
+        settingsButton.setImage(UIImage(named: "IconSettings.png"), for: .normal)
         
         reloadInterface()
-        
+    }
+    
+    func dataInTimerAction() {
+        timerAction.textUpdated = { [weak self] time in
+            return (self?.labelwithShapesView.label.text = time)!
+        }
+        timerAction.strokeEndUpdated = { [weak self] time in
+            return (self?.labelwithShapesView.overShapeLayer.strokeEnd = time)!
+        }
+        timerAction.dischargeTimer = { [weak self] in
+            return (self?.actionButtons.dischargeTimer())!
+        }
+        timerAction.labelCountUpdated = { [weak self] time in
+            return (self?.countTimersLabel.text = "Завершенные таймеры: \(time)")!
+        }
+    }
+    
+    func dataInActionButtons() {
+        actionButtons.reloadInterface = { [weak self] in
+            return (self?.reloadInterface())!
+        }
     }
     
     //MARK: Начальный текст и цвет кнопок
@@ -76,7 +65,6 @@ class MainViewController: UIViewController {
         
         buttonStop.setTitle(actionButtons.state.breakAndStopButtonTitle, for: .normal)
         buttonStop.backgroundColor = actionButtons.state.breakAndStopButtonColor
-        
     }
     
     @IBAction func workAndPause(_ sender: UIButton) {
@@ -95,4 +83,5 @@ class MainViewController: UIViewController {
         settingsVC.saveSettings()
         timerAction.userDefaultsWork(counter: timerAction.userDefaults.object(forKey: "timer") as? Double ?? 1500.00)
     }
+    
 }

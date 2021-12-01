@@ -12,8 +12,8 @@ indirect enum State {
     //MARK: Состояния, которые определяют, таймер, цвет и текст кнопок
     
     case initial,
-    workTimerIsActive,
-    pauseTimer
+         workTimerIsActive,
+         pauseTimer
     
     //MARK: текст и цвет кнопок, в зависим. от состояния
     
@@ -60,4 +60,5 @@ indirect enum State {
             return UIColor(named: "AppRed")!
         }
     }
+    
 }
