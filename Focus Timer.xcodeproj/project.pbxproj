@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		861B87712757818A0017FD00 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861B87702757818A0017FD00 /* MainViewModel.swift */; };
 		86323D272426265E004D367C /* TimerAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86323D262426265E004D367C /* TimerAction.swift */; };
 		86813FD42374EAE300DA5F23 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86813FD32374EAE300DA5F23 /* AppDelegate.swift */; };
 		86813FD62374EAE300DA5F23 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86813FD52374EAE300DA5F23 /* SceneDelegate.swift */; };
@@ -15,6 +16,8 @@
 		86813FDD2374EAE600DA5F23 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86813FDC2374EAE600DA5F23 /* Assets.xcassets */; };
 		86813FE02374EAE600DA5F23 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86813FDE2374EAE600DA5F23 /* LaunchScreen.storyboard */; };
 		86813FEE2374FACE00DA5F23 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86813FED2374FACE00DA5F23 /* SettingsViewController.swift */; };
+		86B46274275756A100CD1323 /* LocalStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B46273275756A100CD1323 /* LocalStorage.swift */; };
+		86B462782757723900CD1323 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B462772757723900CD1323 /* SettingsViewModel.swift */; };
 		86CC1B7923CF04AD00CAFA47 /* ActionButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CC1B7823CF04AD00CAFA47 /* ActionButtons.swift */; };
 		86CC1B7F23CF09BE00CAFA47 /* States.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CC1B7E23CF09BE00CAFA47 /* States.swift */; };
 		86CC1B8323CF162300CAFA47 /* LabelWithShapesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CC1B8223CF162300CAFA47 /* LabelWithShapesView.swift */; };
@@ -23,6 +26,7 @@
 
 /* Begin PBXFileReference section */
 		18688B89D548CB8672DDB3A7 /* Pods_Focus_Timer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Focus_Timer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		861B87702757818A0017FD00 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		86323D262426265E004D367C /* TimerAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerAction.swift; sourceTree = "<group>"; };
 		86813FD02374EAE300DA5F23 /* Focus Timer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Focus Timer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		86813FD32374EAE300DA5F23 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -33,6 +37,8 @@
 		86813FDF2374EAE600DA5F23 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		86813FE12374EAE600DA5F23 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		86813FED2374FACE00DA5F23 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		86B46273275756A100CD1323 /* LocalStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalStorage.swift; sourceTree = "<group>"; };
+		86B462772757723900CD1323 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		86CC1B7823CF04AD00CAFA47 /* ActionButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButtons.swift; sourceTree = "<group>"; };
 		86CC1B7E23CF09BE00CAFA47 /* States.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = States.swift; sourceTree = "<group>"; };
 		86CC1B8223CF162300CAFA47 /* LabelWithShapesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelWithShapesView.swift; sourceTree = "<group>"; };
@@ -52,18 +58,11 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		8661632F256BBB440094F207 /* SettingsVC */ = {
-			isa = PBXGroup;
-			children = (
-				86813FED2374FACE00DA5F23 /* SettingsViewController.swift */,
-			);
-			path = SettingsVC;
-			sourceTree = "<group>";
-		};
 		86813FC72374EAE300DA5F23 = {
 			isa = PBXGroup;
 			children = (
 				86813FD22374EAE300DA5F23 /* Focus Timer */,
+				86813FD92374EAE300DA5F23 /* Main.storyboard */,
 				86813FD12374EAE300DA5F23 /* Products */,
 				A4063B611D94BFD3032E83F7 /* Pods */,
 				D09E167C005D9EF5E4AB52A9 /* Frameworks */,
@@ -81,21 +80,14 @@
 		86813FD22374EAE300DA5F23 /* Focus Timer */ = {
 			isa = PBXGroup;
 			children = (
-				86813FE92374ED0B00DA5F23 /* MainVC */,
-				8661632F256BBB440094F207 /* SettingsVC */,
+				86B462722757555200CD1323 /* Storage */,
+				86B4626E275751DA00CD1323 /* TimerStates */,
+				86FB2ECE256CDA9100291C23 /* Views */,
+				86FB2ECD256CDA7700291C23 /* Timer */,
+				86B4626A275750D500CD1323 /* Controllers */,
 				86813FEA2374ED1400DA5F23 /* Supporting files */,
 			);
 			path = "Focus Timer";
-			sourceTree = "<group>";
-		};
-		86813FE92374ED0B00DA5F23 /* MainVC */ = {
-			isa = PBXGroup;
-			children = (
-				86FB2ECD256CDA7700291C23 /* Model */,
-				86FB2ECE256CDA9100291C23 /* View */,
-				86FB2ECF256CDAAA00291C23 /* Controller */,
-			);
-			path = MainVC;
 			sourceTree = "<group>";
 		};
 		86813FEA2374ED1400DA5F23 /* Supporting files */ = {
@@ -110,31 +102,48 @@
 			path = "Supporting files";
 			sourceTree = "<group>";
 		};
-		86FB2ECD256CDA7700291C23 /* Model */ = {
+		86B4626A275750D500CD1323 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				86813FD72374EAE300DA5F23 /* MainViewController.swift */,
+				861B87702757818A0017FD00 /* MainViewModel.swift */,
+				86CC1B7823CF04AD00CAFA47 /* ActionButtons.swift */,
+				86813FED2374FACE00DA5F23 /* SettingsViewController.swift */,
+				86B462772757723900CD1323 /* SettingsViewModel.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		86B4626E275751DA00CD1323 /* TimerStates */ = {
+			isa = PBXGroup;
+			children = (
+				86CC1B7E23CF09BE00CAFA47 /* States.swift */,
+			);
+			path = TimerStates;
+			sourceTree = "<group>";
+		};
+		86B462722757555200CD1323 /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				86B46273275756A100CD1323 /* LocalStorage.swift */,
+			);
+			path = Storage;
+			sourceTree = "<group>";
+		};
+		86FB2ECD256CDA7700291C23 /* Timer */ = {
 			isa = PBXGroup;
 			children = (
 				86323D262426265E004D367C /* TimerAction.swift */,
 			);
-			path = Model;
+			path = Timer;
 			sourceTree = "<group>";
 		};
-		86FB2ECE256CDA9100291C23 /* View */ = {
+		86FB2ECE256CDA9100291C23 /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				86CC1B8223CF162300CAFA47 /* LabelWithShapesView.swift */,
 			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		86FB2ECF256CDAAA00291C23 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				86CC1B7823CF04AD00CAFA47 /* ActionButtons.swift */,
-				86813FD72374EAE300DA5F23 /* MainViewController.swift */,
-				86813FD92374EAE300DA5F23 /* Main.storyboard */,
-				86CC1B7E23CF09BE00CAFA47 /* States.swift */,
-			);
-			path = Controller;
+			path = Views;
 			sourceTree = "<group>";
 		};
 		A4063B611D94BFD3032E83F7 /* Pods */ = {
@@ -255,9 +264,12 @@
 				86323D272426265E004D367C /* TimerAction.swift in Sources */,
 				86813FD82374EAE300DA5F23 /* MainViewController.swift in Sources */,
 				86813FD42374EAE300DA5F23 /* AppDelegate.swift in Sources */,
+				86B462782757723900CD1323 /* SettingsViewModel.swift in Sources */,
 				86813FD62374EAE300DA5F23 /* SceneDelegate.swift in Sources */,
+				86B46274275756A100CD1323 /* LocalStorage.swift in Sources */,
 				86CC1B8323CF162300CAFA47 /* LabelWithShapesView.swift in Sources */,
 				86813FEE2374FACE00DA5F23 /* SettingsViewController.swift in Sources */,
+				861B87712757818A0017FD00 /* MainViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
