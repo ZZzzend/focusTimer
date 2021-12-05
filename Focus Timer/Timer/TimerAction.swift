@@ -10,12 +10,13 @@ import AudioToolbox
 
 class TimerAction {
     
-    private var timer: Timer?
-    
-    var textUpdated: ((_ time: String) -> Void)?
-    var strokeEndUpdated: ((_ time: CGFloat) -> Void)?
-    var labelCountUpdated: ((_ time: Int) -> Void)?
     var dischargeTimer: (() -> Void)?
+    @Published var time = 0.0
+    @Published var strokeEnd: CGFloat = 0.0
+    @Published var countDoneTimers = 0
+    
+    
+    private var timer: Timer?
     
     private var workCounter = 1500.00,
                 workCircleTimer = 1500.00,
@@ -24,8 +25,8 @@ class TimerAction {
                 timerFinished = false
     
     
-    // MARK: - Данные с userDefaults для таймера
-    func userDefaultsWork(counter: Double, shouldUpdateCounter: Bool? = nil) {
+    // MARK: - Данные для таймера
+    func configureTimer(counter: Double, shouldUpdateCounter: Bool? = nil) {
         workCounter = counter
         workCircleTimer = workCounter
         
@@ -33,7 +34,8 @@ class TimerAction {
             self.timerFinished = timerFinished
         }
         
-        textUpdated?(String(format: "%02d:%02d", Int(workCounter) / 60, Int(workCounter) % 60))
+
+        time = workCounter
     }
     
     func start() {
@@ -56,11 +58,11 @@ class TimerAction {
     
     // MARK: - старт таймера при работе
     @objc func updateCounter() {
-        decrement(count: &workCounter, circleTimer: &workCircleTimer, pause: &workPause)
+        decrement()
         
         if workCounter < 1 && timerFinished == true {
             countTimers += 1
-            labelCountUpdated?(countTimers)
+            countDoneTimers = countTimers
         }
         
         exampleTime(count: workCounter)
@@ -68,29 +70,24 @@ class TimerAction {
 }
 
 private extension TimerAction {
-    // MARK: -  Отображение времени таймера в label
+    
     private func exampleTime(count: Double) {
-        
         if count > 0 {
-            if count >= 60 {
-                textUpdated?(String(format: "%02d:%02d", Int(count) / 60, Int(count) % 60))
-            } else {
-                textUpdated?(String(format: "%02d", Int(count)))
-            }
+            time = count
         }
         
         if count < 1 {
-            AudioServicesPlaySystemSound(SystemSoundID(1022))
+            AudioNotifications.playFinishTimer()
             dischargeTimer?()
         }
     }
     
     
-    private func decrement (count: inout Double, circleTimer: inout Double, pause: inout Double){
-        if count > 0 {
-            count = circleTimer - pause + (self.timer?.userInfo as! Date).timeIntervalSinceNow
-            
-            strokeEndUpdated?(CGFloat(-(self.timer?.userInfo as! Date).timeIntervalSinceNow + pause) / CGFloat(circleTimer))
+    private func decrement() {
+        if workCounter > 0 {
+            let timeInterval = (self.timer?.userInfo as! Date).timeIntervalSinceNow
+            workCounter = workCircleTimer - workPause + timeInterval
+            strokeEnd = CGFloat((-timeInterval + workPause) / workCircleTimer)
         }
     }
 }
