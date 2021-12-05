@@ -9,19 +9,19 @@ import Foundation
 
 class SettingsViewModel {
     var getWorkValue: Double {
-        LocalStorage.getValue(key: .timer) as? Double ?? 1500
+        TimerStorage.getValue(key: .work)
     }
     
     var getRestValue: Double {
-        LocalStorage.getValue(key: .rest) as? Double ?? 300.00
+        TimerStorage.getValue(key: .rest)
     }
     
     func saveWork(value: Double) {
-        LocalStorage.saveValue(.timer, value)
+        TimerStorage.saveValue(value, key: .work)
     }
     
     func saveRest(value: Double) {
-        LocalStorage.saveValue(.rest, value)
+        TimerStorage.saveValue(value, key: .rest)
     }
     
 }

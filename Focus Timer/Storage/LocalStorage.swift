@@ -7,10 +7,36 @@
 
 import Foundation
 
-class LocalStorage {
+protocol LocalStorage {
+    associatedtype Key: RawRepresentable where Key.RawValue: StringProtocol
+    associatedtype Value
     
-    enum Keys: String {
-        case timer
+    static func getValue(key: Key) -> Value?
+    static func saveValue(_ value: Value, key: Key)
+}
+
+extension LocalStorage {
+    static func getValue(key: Key) -> Value? {
+        if let key = key.rawValue as? String {
+            let value = UserDefaults.standard.object(forKey: key)
+            return value as? Value
+        }
+        
+        return nil
+    }
+    
+    static func saveValue(_ value: Value, key: Key) {
+        if let key = key.rawValue as? String {
+            UserDefaults.standard.setValue(value, forKey: key)
+        }
+    }
+    
+}
+
+class TimerStorage: LocalStorage {
+    
+    enum KeyTimer: String {
+        case work
         case rest
         
         var value: String {
@@ -19,17 +45,17 @@ class LocalStorage {
         
         var defaultValue: Double {
             switch self {
-            case .timer: return 1500
+            case .work: return 1500
             case .rest: return 300
             }
         }
     }
     
-    static func getValue(key: Keys) -> Any? {
-        UserDefaults.standard.object(forKey: key.value)
+    typealias Value = Double
+    typealias Key = KeyTimer
+    
+    static func getValue(key: KeyTimer) -> Double {
+        getValue(key: key) ?? key.defaultValue
     }
     
-    static func saveValue<T>(_ key: Keys,_ value: T) {
-        UserDefaults.standard.setValue(value, forKey: key.value)
-    }
 }

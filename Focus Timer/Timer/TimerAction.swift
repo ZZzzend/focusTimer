@@ -9,33 +9,32 @@ import AVFoundation
 import AudioToolbox
 
 class TimerAction {
-    
-    var dischargeTimer: (() -> Void)?
-    @Published var time = 0.0
-    @Published var strokeEnd: CGFloat = 0.0
-    @Published var countDoneTimers = 0
-    
+
+    @Published private(set) var isFinished = false
+    @Published private(set) var time = 0.0
+    @Published private(set) var strokeEnd: CGFloat = 0.0
+    @Published private(set) var countDoneTimers = 0
     
     private var timer: Timer?
     
-    private var workCounter = 1500.00,
-                workCircleTimer = 1500.00,
-                workPause = 0.00,
+    private var countTime = 1500.00,
+                countAfterPause = 1500.00,
+                countPause = 0.00,
                 countTimers = 0,
                 timerFinished = false
     
     
     // MARK: - Данные для таймера
     func configureTimer(counter: Double, shouldUpdateCounter: Bool? = nil) {
-        workCounter = counter
-        workCircleTimer = workCounter
+        countTime = counter
+        countAfterPause = countTime
         
         if let timerFinished = shouldUpdateCounter {
             self.timerFinished = timerFinished
         }
         
 
-        time = workCounter
+        time = countTime
     }
     
     func start() {
@@ -48,24 +47,24 @@ class TimerAction {
     
     func stop() {
         timer?.invalidate()
-        workPause = 0
+        countPause = 0
     }
     
     func pause() {
         timer?.invalidate()
-        workPause = workCircleTimer - workCounter
+        countPause = countAfterPause - countTime
     }
     
     // MARK: - старт таймера при работе
     @objc func updateCounter() {
         decrement()
         
-        if workCounter < 1 && timerFinished == true {
+        if countTime < 1 && timerFinished == true {
             countTimers += 1
             countDoneTimers = countTimers
         }
         
-        exampleTime(count: workCounter)
+        exampleTime(count: countTime)
     }
 }
 
@@ -78,16 +77,16 @@ private extension TimerAction {
         
         if count < 1 {
             AudioNotifications.playFinishTimer()
-            dischargeTimer?()
+            isFinished = !isFinished
         }
     }
     
     
     private func decrement() {
-        if workCounter > 0 {
+        if countTime > 0 {
             let timeInterval = (self.timer?.userInfo as! Date).timeIntervalSinceNow
-            workCounter = workCircleTimer - workPause + timeInterval
-            strokeEnd = CGFloat((-timeInterval + workPause) / workCircleTimer)
+            countTime = countAfterPause - countPause + timeInterval
+            strokeEnd = CGFloat((-timeInterval + countPause) / countAfterPause)
         }
     }
 }

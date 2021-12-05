@@ -1,5 +1,5 @@
 //
-//  State.swift
+//  TimerStates.swift
 //  Focus Timer
 //
 //  Created by Владислав on 15.01.2020.

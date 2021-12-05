@@ -19,7 +19,7 @@
 		86AC0B172758A4D7008496A2 /* AudioNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86AC0B162758A4D7008496A2 /* AudioNotifications.swift */; };
 		86B46274275756A100CD1323 /* LocalStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B46273275756A100CD1323 /* LocalStorage.swift */; };
 		86B462782757723900CD1323 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B462772757723900CD1323 /* SettingsViewModel.swift */; };
-		86CC1B7F23CF09BE00CAFA47 /* States.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CC1B7E23CF09BE00CAFA47 /* States.swift */; };
+		86CC1B7F23CF09BE00CAFA47 /* TimerStates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CC1B7E23CF09BE00CAFA47 /* TimerStates.swift */; };
 		86CC1B8323CF162300CAFA47 /* LabelWithShapesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CC1B8223CF162300CAFA47 /* LabelWithShapesView.swift */; };
 		9861D57DC2F19CD257E9DA5C /* Pods_Focus_Timer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18688B89D548CB8672DDB3A7 /* Pods_Focus_Timer.framework */; };
 /* End PBXBuildFile section */
@@ -40,7 +40,7 @@
 		86AC0B162758A4D7008496A2 /* AudioNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioNotifications.swift; sourceTree = "<group>"; };
 		86B46273275756A100CD1323 /* LocalStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalStorage.swift; sourceTree = "<group>"; };
 		86B462772757723900CD1323 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
-		86CC1B7E23CF09BE00CAFA47 /* States.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = States.swift; sourceTree = "<group>"; };
+		86CC1B7E23CF09BE00CAFA47 /* TimerStates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerStates.swift; sourceTree = "<group>"; };
 		86CC1B8223CF162300CAFA47 /* LabelWithShapesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelWithShapesView.swift; sourceTree = "<group>"; };
 		CDDC9E560FB4965617CC42E4 /* Pods-Focus Timer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Focus Timer.release.xcconfig"; path = "Target Support Files/Pods-Focus Timer/Pods-Focus Timer.release.xcconfig"; sourceTree = "<group>"; };
 		E9ED44CF9914AC45A0A10712 /* Pods-Focus Timer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Focus Timer.debug.xcconfig"; path = "Target Support Files/Pods-Focus Timer/Pods-Focus Timer.debug.xcconfig"; sourceTree = "<group>"; };
@@ -58,6 +58,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		86527122275C874300F9741C /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				86AC0B162758A4D7008496A2 /* AudioNotifications.swift */,
+			);
+			path = Audio;
+			sourceTree = "<group>";
+		};
 		86813FC72374EAE300DA5F23 = {
 			isa = PBXGroup;
 			children = (
@@ -80,12 +88,13 @@
 		86813FD22374EAE300DA5F23 /* Focus Timer */ = {
 			isa = PBXGroup;
 			children = (
+				86FB2ECE256CDA9100291C23 /* Views */,
 				86AC0B142758A44D008496A2 /* MainInterface */,
 				86AC0B152758A45A008496A2 /* SettingsInterface */,
 				86B462722757555200CD1323 /* Storage */,
-				86B4626E275751DA00CD1323 /* TimerStates */,
-				86FB2ECE256CDA9100291C23 /* Views */,
+				86B4626E275751DA00CD1323 /* States */,
 				86FB2ECD256CDA7700291C23 /* Timer */,
+				86527122275C874300F9741C /* Audio */,
 				86813FEA2374ED1400DA5F23 /* Supporting files */,
 			);
 			path = "Focus Timer";
@@ -121,12 +130,12 @@
 			path = SettingsInterface;
 			sourceTree = "<group>";
 		};
-		86B4626E275751DA00CD1323 /* TimerStates */ = {
+		86B4626E275751DA00CD1323 /* States */ = {
 			isa = PBXGroup;
 			children = (
-				86CC1B7E23CF09BE00CAFA47 /* States.swift */,
+				86CC1B7E23CF09BE00CAFA47 /* TimerStates.swift */,
 			);
-			path = TimerStates;
+			path = States;
 			sourceTree = "<group>";
 		};
 		86B462722757555200CD1323 /* Storage */ = {
@@ -141,7 +150,6 @@
 			isa = PBXGroup;
 			children = (
 				86323D262426265E004D367C /* TimerAction.swift */,
-				86AC0B162758A4D7008496A2 /* AudioNotifications.swift */,
 			);
 			path = Timer;
 			sourceTree = "<group>";
@@ -267,7 +275,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				86CC1B7F23CF09BE00CAFA47 /* States.swift in Sources */,
+				86CC1B7F23CF09BE00CAFA47 /* TimerStates.swift in Sources */,
 				86323D272426265E004D367C /* TimerAction.swift in Sources */,
 				86AC0B172758A4D7008496A2 /* AudioNotifications.swift in Sources */,
 				86813FD82374EAE300DA5F23 /* MainViewController.swift in Sources */,

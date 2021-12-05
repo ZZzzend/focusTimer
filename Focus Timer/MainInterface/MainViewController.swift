@@ -25,7 +25,6 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         
         dataInTimerAction()
-        dataInActionButtons()
         
         viewModel.setValueTime()
         reloadInterface()
@@ -51,23 +50,11 @@ class MainViewController: UIViewController {
 
 // MARK: - Update interface when timer act
 private extension MainViewController {
-    func dataInActionButtons() {
-//        viewModel.reloadInterface = { [weak self] in
-//             self?.reloadInterface()
-//        }
-    }
     
     // MARK: - Начальный текст и цвет кнопок
     func reloadInterface() {
-//        guard isViewLoaded else { return }
-//        buttonPause.setTitle(viewModel.workAndPauseButtonTitle, for: .normal)
-//        buttonPause.backgroundColor = viewModel.workAndPauseButtonColor
-//
-//        buttonStop.setTitle(viewModel.breakAndStopButtonTitle, for: .normal)
-//        buttonStop.backgroundColor = viewModel.breakAndStopButtonColor
         
         viewModel.$state
-            .print("Okey")
             .subscribe(on: DispatchQueue.main)
             .sink(receiveValue: { [weak self] state in
                     guard let self = self,
@@ -80,7 +67,6 @@ private extension MainViewController {
                     self.buttonStop.backgroundColor = state.breakAndStopButtonColor
             })
             .store(in: &subscriptions)
-
     }
     
     func dataInTimerAction() {

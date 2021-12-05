@@ -12,44 +12,40 @@ class MainViewModel {
     private let timerAction = TimerAction()
     private var subscriptions = Set<AnyCancellable>()
     
-    var reloadInterface: (() -> Void)?
-    
+    @Published private(set) var state = State.initial
     @Published private(set) var strokeColor = UIColor(named: "AppBlue")?.cgColor
     @Published private(set) var timerTextColor = UIColor(named: "AppBlack")
     @Published private(set) var strokeEnd: CGFloat = 0
     @Published private(set) var timerTextUpdate = "00:00"
     @Published private(set) var countTimersUpdated = 0
     
-    var workAndPauseButtonTitle: String {
-        state.workAndPauseButtonTitle
-    }
-
-    var breakAndStopButtonTitle: String {
-        state.breakAndStopButtonTitle
-    }
-    
-    var workAndPauseButtonColor: UIColor {
-        state.workAndPauseButtonColor
-    }
-    
-    var breakAndStopButtonColor: UIColor {
-        state.breakAndStopButtonColor
-    }
-    
-    @Published var state = State.initial
-    //{
-//        didSet {
-//            reloadInterface?()
-//        }
- //   }
-    
-    // MARK: - Init timer actions
     init() {
-        timerAction.dischargeTimer = { [weak self] in
-            self?.dischargeTimer()
-        }
-        
+        bindingTimer()
+    }
+    
+    func setValueTime() {
+        let value = TimerStorage.getValue(key: .work)
+        timerAction.configureTimer(counter: value)
+    }
+    
+    func changeWorkState() {
+        workAndPauseState()
+    }
+    
+    func changeBreakState() {
+        breakAndStopState()
+    }
+}
+
+// MARK: - Timer bindings
+private extension MainViewModel {
+    func bindingTimer() {
         subscriptions = [
+            timerAction.$isFinished
+                .sink(receiveValue: { [weak self] _ in
+                    self?.dischargeTimer()
+                }),
+            
             timerAction.$strokeEnd
                 .assign(to: \.strokeEnd, on: self),
             
@@ -68,19 +64,6 @@ class MainViewModel {
             timerAction.$countDoneTimers
                 .assign(to: \.countTimersUpdated, on: self)
         ]
-    }
-    
-    func setValueTime() {
-        let value = LocalStorage.getValue(key: .timer) as? Double
-        timerAction.configureTimer(counter: value ?? 1500)
-    }
-    
-    func changeWorkState() {
-        workAndPauseState()
-    }
-    
-    func changeBreakState() {
-        breakAndStopState()
     }
 }
 
@@ -122,14 +105,14 @@ private extension MainViewModel {
 // MARK: - Actions when change states
 private extension MainViewModel {
     func workActive() {
-        let value = LocalStorage.getValue(key: .timer) as? Double
-        timerAction.configureTimer(counter: value ?? 1500.00, shouldUpdateCounter: true)
+        let value = TimerStorage.getValue(key: .work)
+        timerAction.configureTimer(counter: value, shouldUpdateCounter: true)
         timerAction.start()
     }
     
     func breakActive() {
-        let value = LocalStorage.getValue(key: .rest) as? Double
-        timerAction.configureTimer(counter: value ?? 300.00, shouldUpdateCounter: false)
+        let value = TimerStorage.getValue(key: .rest)
+        timerAction.configureTimer(counter: value, shouldUpdateCounter: false)
         timerAction.start()
         
         strokeColor = UIColor(named: "AppGreen")?.cgColor
