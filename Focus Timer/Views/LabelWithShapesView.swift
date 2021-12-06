@@ -15,25 +15,27 @@ class LabelWithShapesView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-  //      commonInit()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        label.text = "25:00"
+        
+        label.text = "00:00"
         label.font = UIFont(name: "Arial Rounded MT Bold", size: 60)
+        
         configShapeLayer(shapeLayer, color: #colorLiteral(red: 0.951142132, green: 0.951142132, blue: 0.951142132, alpha: 1).cgColor, strokeEnd: 1)
         configShapeLayer(overShapeLayer, color: #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1).cgColor, strokeEnd: 0)
+        
         commonInit()
     }
     
-    func commonInit() {
+    private func commonInit() {
         layer.addSublayer(shapeLayer)
         layer.addSublayer(overShapeLayer)
         addSubview(label)
     }
     
-    func configShapeLayer(_ shapeLayer: CAShapeLayer, color: CGColor, strokeEnd: CGFloat) {
+    private func configShapeLayer(_ shapeLayer: CAShapeLayer, color: CGColor, strokeEnd: CGFloat) {
         
         shapeLayer.strokeColor = color
         shapeLayer.lineWidth = 26.0
@@ -42,12 +44,11 @@ class LabelWithShapesView: UIView {
         shapeLayer.strokeEnd = strokeEnd
     }
     
-    
-    
-    func configFrameShapeLayer(_ shapeLayer: CAShapeLayer) {
+    private func configFrameShapeLayer(_ shapeLayer: CAShapeLayer) {
         
-        let path = UIBezierPath(arcCenter: CGPoint(x: CGFloat(self.bounds.size.width / 2), y:  CGFloat(self.bounds.size.height / 2)),
-                                radius: CGFloat(self.bounds.size.width / 2),
+        let path = UIBezierPath(arcCenter: CGPoint(x: CGFloat(self.bounds.midX),
+                                                   y:  CGFloat(self.bounds.midY)),
+                                radius: CGFloat(self.bounds.midX),
                                 startAngle: CGFloat(3 * Double.pi / 2),
                                 endAngle: CGFloat(7 * Double.pi / 2),
                                 clockwise: true)
@@ -63,7 +64,9 @@ class LabelWithShapesView: UIView {
         configFrameShapeLayer(overShapeLayer)
         
         label.frame = self.bounds
-        label.center = CGPoint(x: CGFloat(self.bounds.size.width / 2), y: CGFloat(self.bounds.size.height / 2))
+        label.center = CGPoint(x: CGFloat(self.bounds.midX),
+                               y: CGFloat(self.bounds.midY))
         label.textAlignment = .center
     }
+    
 }
