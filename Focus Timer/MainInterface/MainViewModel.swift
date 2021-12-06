@@ -17,7 +17,7 @@ class MainViewModel {
     @Published private(set) var timerTextColor = UIColor(named: "AppBlack")
     @Published private(set) var strokeEnd: CGFloat = 0
     @Published private(set) var timerTextUpdate = "00:00"
-    @Published private(set) var countTimersUpdated = 0
+    @Published private(set) var countTimersDone = "0"
     
     init() {
         bindingTimer()
@@ -62,7 +62,8 @@ private extension MainViewModel {
                 }.assign(to: \.timerTextUpdate, on: self),
             
             timerAction.$countDoneTimers
-                .assign(to: \.countTimersUpdated, on: self)
+                .map { "Завершенные таймеры: \($0)" }
+                .assign(to: \.countTimersDone, on: self)
         ]
     }
 }

@@ -53,7 +53,6 @@ private extension MainViewController {
     
     // MARK: - Начальный текст и цвет кнопок
     func reloadInterface() {
-        
         viewModel.$state
             .subscribe(on: DispatchQueue.main)
             .sink(receiveValue: { [weak self] state in
@@ -87,8 +86,7 @@ private extension MainViewController {
                 .assign(to: \.text!,
                         on: labelwithShapesView.label),
             
-            viewModel.$countTimersUpdated
-                .map { "Завершенные таймеры: \($0)" }
+            viewModel.$countTimersDone
                 .assign(to: \.text!,
                         on: countTimersLabel)
         ]

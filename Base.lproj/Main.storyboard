@@ -27,8 +27,8 @@
                                     <segue destination="O3e-zS-I1s" kind="presentation" id="S8i-gc-iTb"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Завершенные таймеры: 0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IOj-LR-OYm">
-                                <rect key="frame" x="109.33333333333333" y="118" width="195.66666666666669" height="20"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Завершенные таймеры" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IOj-LR-OYm">
+                                <rect key="frame" x="118.33333333333333" y="118" width="177.33333333333337" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="4c2-S3-ldD"/>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="57" id="Iz8-wA-blf"/>

@@ -10,10 +10,10 @@ import AudioToolbox
 
 class TimerAction {
 
-    @Published private(set) var isFinished = false
     @Published private(set) var time = 0.0
     @Published private(set) var strokeEnd: CGFloat = 0.0
     @Published private(set) var countDoneTimers = 0
+    @Published private(set) var isFinished = false
     
     private var timer: Timer?
     
@@ -70,7 +70,7 @@ class TimerAction {
 
 private extension TimerAction {
     
-    private func exampleTime(count: Double) {
+    func exampleTime(count: Double) {
         if count > 0 {
             time = count
         }
@@ -82,7 +82,7 @@ private extension TimerAction {
     }
     
     
-    private func decrement() {
+    func decrement() {
         if countTime > 0 {
             let timeInterval = (self.timer?.userInfo as! Date).timeIntervalSinceNow
             countTime = countAfterPause - countPause + timeInterval
