@@ -31,31 +31,10 @@ extension LocalStorage {
         }
     }
     
-}
-
-class TimerStorage: LocalStorage {
-    
-    enum KeyTimer: String {
-        case work
-        case rest
-        
-        var value: String {
-            self.rawValue
+    static func deleteValue(key: Key) {
+        if let key = key.rawValue as? String {
+            UserDefaults.standard.removeObject(forKey: key)
         }
-        
-        var defaultValue: Double {
-            switch self {
-            case .work: return 1500
-            case .rest: return 300
-            }
-        }
-    }
-    
-    typealias Value = Double
-    typealias Key = KeyTimer
-    
-    static func getValue(key: KeyTimer) -> Double {
-        getValue(key: key) ?? key.defaultValue
     }
     
 }

@@ -8,6 +8,7 @@
 import Foundation
 
 class SettingsViewModel {
+    
     var getWorkValue: Double {
         TimerStorage.getValue(key: .work)
     }
@@ -15,6 +16,11 @@ class SettingsViewModel {
     var getRestValue: Double {
         TimerStorage.getValue(key: .rest)
     }
+    
+    private(set) var textContent = (work: "Время работы",
+                                    rest: "Время отдыха",
+                                    save: "Сохранить",
+                                    navigation: "Настройки")
     
     func saveWork(value: Double) {
         TimerStorage.saveValue(value, key: .work)

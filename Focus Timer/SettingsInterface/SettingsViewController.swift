@@ -12,13 +12,16 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var timeWorkDatePicker: UIDatePicker!
     @IBOutlet weak var timeRestDatePicker: UIDatePicker!
     
-    @IBOutlet weak var workButton: UIButton!
-    @IBOutlet weak var restButton: UIButton!
+    @IBOutlet weak var workTimeLabel: UILabel!
+    @IBOutlet weak var restTimeLabel: UILabel!
+    
+    @IBOutlet weak var saveButton: UIButton!
     
     private let viewModel = SettingsViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setContentTexts()
         setDefaultValuesDatePickers()
     }
     
@@ -47,4 +50,16 @@ private extension SettingsViewController {
         viewModel.saveWork(value: work)
         viewModel.saveRest(value: rest)
     }
+}
+
+private extension SettingsViewController {
+    
+    func setContentTexts() {
+        navigationItem.title = viewModel.textContent.navigation
+        workTimeLabel.text = viewModel.textContent.work
+        restTimeLabel.text = viewModel.textContent.rest
+        saveButton.setTitle(viewModel.textContent.work,
+                            for: .normal)
+    }
+    
 }

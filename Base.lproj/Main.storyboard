@@ -138,7 +138,7 @@
                                                     <constraint firstAttribute="height" constant="40" id="EOb-bC-RuL"/>
                                                 </constraints>
                                             </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Время работы" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rZ3-es-aR6">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Время работы" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rZ3-es-aR6">
                                                 <rect key="frame" x="149.66666666666666" y="10.333333333333327" width="114.66666666666666" height="19.333333333333329"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="114.5" id="Dqx-Qs-A3H"/>
@@ -184,7 +184,7 @@
                                                     <constraint firstAttribute="height" constant="40" id="hbW-K3-2p6"/>
                                                 </constraints>
                                             </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Время отдыха" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aQP-ge-TN6">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Время отдыха" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aQP-ge-TN6">
                                                 <rect key="frame" x="150.66666666666666" y="10.333333333333313" width="112.99999999999997" height="19.333333333333329"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="113" id="L6P-mi-lgH"/>
@@ -256,10 +256,11 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="restButton" destination="T0i-Fn-Bpt" id="Atq-Rr-jtC"/>
+                        <outlet property="restTimeLabel" destination="aQP-ge-TN6" id="KxF-H8-B5R"/>
+                        <outlet property="saveButton" destination="WsF-OX-gG0" id="slw-bA-meE"/>
                         <outlet property="timeRestDatePicker" destination="ROt-h0-8pD" id="vpA-7T-t97"/>
                         <outlet property="timeWorkDatePicker" destination="HNj-Ih-SXK" id="3CJ-yy-Ww8"/>
-                        <outlet property="workButton" destination="Tmr-mi-sqs" id="j0w-A7-jIW"/>
+                        <outlet property="workTimeLabel" destination="rZ3-es-aR6" id="oTu-qf-kfd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N9n-Ly-fwP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
