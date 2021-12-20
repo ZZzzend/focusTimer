@@ -24,7 +24,6 @@
 		86D5342727703080001D0241 /* TimerActionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D5342627703080001D0241 /* TimerActionTests.swift */; };
 		86D5342B27705B66001D0241 /* LocalStorageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D5342A27705B66001D0241 /* LocalStorageTests.swift */; };
 		86D5343127705E31001D0241 /* TimerStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D5343027705E31001D0241 /* TimerStorage.swift */; };
-		86D5343527705F35001D0241 /* MainViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D5343427705F35001D0241 /* MainViewModelTests.swift */; };
 		9861D57DC2F19CD257E9DA5C /* Pods_Focus_Timer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18688B89D548CB8672DDB3A7 /* Pods_Focus_Timer.framework */; };
 /* End PBXBuildFile section */
 
@@ -61,7 +60,6 @@
 		86D5342627703080001D0241 /* TimerActionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerActionTests.swift; sourceTree = "<group>"; };
 		86D5342A27705B66001D0241 /* LocalStorageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalStorageTests.swift; sourceTree = "<group>"; };
 		86D5343027705E31001D0241 /* TimerStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerStorage.swift; sourceTree = "<group>"; };
-		86D5343427705F35001D0241 /* MainViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModelTests.swift; sourceTree = "<group>"; };
 		CDDC9E560FB4965617CC42E4 /* Pods-Focus Timer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Focus Timer.release.xcconfig"; path = "Target Support Files/Pods-Focus Timer/Pods-Focus Timer.release.xcconfig"; sourceTree = "<group>"; };
 		E9ED44CF9914AC45A0A10712 /* Pods-Focus Timer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Focus Timer.debug.xcconfig"; path = "Target Support Files/Pods-Focus Timer/Pods-Focus Timer.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -181,7 +179,6 @@
 			children = (
 				86D5342627703080001D0241 /* TimerActionTests.swift */,
 				86D5342A27705B66001D0241 /* LocalStorageTests.swift */,
-				86D5343427705F35001D0241 /* MainViewModelTests.swift */,
 				86D5341E27702046001D0241 /* Info.plist */,
 			);
 			path = "Focus TimerTests";
@@ -365,7 +362,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				86D5343527705F35001D0241 /* MainViewModelTests.swift in Sources */,
 				86D5342727703080001D0241 /* TimerActionTests.swift in Sources */,
 				86D5342B27705B66001D0241 /* LocalStorageTests.swift in Sources */,
 			);

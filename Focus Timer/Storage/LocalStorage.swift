@@ -31,4 +31,10 @@ extension LocalStorage {
         }
     }
     
+    static func deleteValue(key: Key) {
+        if let key = key.rawValue as? String {
+            UserDefaults.standard.removeObject(forKey: key)
+        }
+    }
+    
 }

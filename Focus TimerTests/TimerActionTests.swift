@@ -70,5 +70,28 @@ class TimerActionTests: XCTestCase {
         
         XCTAssertGreaterThan(timer.countDoneTimers, 0)
     }
+    
+    func testIsCorrectCountDownWithPause() throws {
+        let expectation = self.expectation(description: #function)
+        let expectedTime: Double = 2
+        
+        timer.configureTimer(counter: expectedTime * 2)
+        timer.start()
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + expectedTime) {
+            self.timer.pause()
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + (expectedTime * 2)) {
+            self.timer.start()
+            expectation.fulfill()
+        }
+        
+        waitForExpectations(timeout: (expectedTime * 2) + 1)
+        timer.stop()
+        
+        XCTAssertLessThan(timer.leftTime - expectedTime, 1)
+        XCTAssertLessThan(expectedTime - timer.leftTime, 1)
+    }
 
 }

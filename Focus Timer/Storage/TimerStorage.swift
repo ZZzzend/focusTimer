@@ -13,10 +13,6 @@ class TimerStorage: LocalStorage {
         case work
         case rest
         
-        var value: String {
-            self.rawValue
-        }
-        
         var defaultValue: Double {
             switch self {
             case .work: return 1500
