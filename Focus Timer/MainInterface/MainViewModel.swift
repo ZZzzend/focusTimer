@@ -24,8 +24,7 @@ class MainViewModel {
     }
     
     func setValueTime() {
-        let value = TimerStorage.getValue(key: .work)
-        timerAction.configureTimer(counter: value)
+        setConfigTimer(isWork: true)
     }
     
     func changeWorkState() {
@@ -49,7 +48,7 @@ private extension MainViewModel {
             timerAction.$strokeEnd
                 .assign(to: \.strokeEnd, on: self),
             
-            timerAction.$time
+            timerAction.$leftTime
                 .map {
                     var text: String
                     if $0 >= 60 {
@@ -106,14 +105,12 @@ private extension MainViewModel {
 // MARK: - Actions when change states
 private extension MainViewModel {
     func workActive() {
-        let value = TimerStorage.getValue(key: .work)
-        timerAction.configureTimer(counter: value, shouldUpdateCounter: true)
+        setConfigTimer(isWork: true, isAddDoneCount: true)
         timerAction.start()
     }
     
     func breakActive() {
-        let value = TimerStorage.getValue(key: .rest)
-        timerAction.configureTimer(counter: value, shouldUpdateCounter: false)
+        setConfigTimer(isWork: false, isAddDoneCount: false)
         timerAction.start()
         
         strokeColor = UIColor(named: "AppGreen")?.cgColor
@@ -133,5 +130,10 @@ private extension MainViewModel {
         strokeColor = UIColor(named: "AppBlue")?.cgColor
         timerTextColor = UIColor(named: "AppBlack")
         strokeEnd = 0
+    }
+    
+    func setConfigTimer(isWork: Bool, isAddDoneCount: Bool? = nil) {
+        let value = TimerStorage.getValue(key: isWork ? .work : .rest)
+        timerAction.configureTimer(counter: value, shouldUpdateCounter: isAddDoneCount)
     }
 }
